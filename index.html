@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vermögensplanung Pro 2025 - Registrierung</title>
+    <title>Vermögensplanung Pro 2025</title>
     
     <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -255,9 +255,9 @@
                 <div class="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
                     <span class="material-symbols-rounded text-3xl">lock_open</span>
                 </div>
-                <h2 class="text-2xl font-bold text-[#1D1D1F] tracking-tight">Analyse freischalten</h2>
+                <h2 class="text-2xl font-bold text-[#1D1D1F] tracking-tight">Rechner freischalten</h2>
                 <p class="text-sm text-[#86868B] mt-2 leading-relaxed">
-                    Registrieren Sie sich jetzt, um Zugriff auf den Basisrenten-Rechner Pro 2025 zu erhalten.
+                    Registrieren Sie sich jetzt, um Zugriff auf den Basisrenten-Rechner Pro 2026 zu erhalten.
                 </p>
             </div>
 
@@ -313,10 +313,7 @@
                     <p class="text-[10px] text-[#86868B] uppercase tracking-wide">Basisrente 2025</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="downloadHTML()" class="no-print bg-white text-[#1D1D1F] border border-gray-200 hover:bg-gray-50 px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1 shadow-sm">
-                        <span class="material-symbols-rounded text-sm">save</span>
-                        <span>Speichern</span>
-                    </button>
+                    <!-- SPEICHERN BUTTON ENTFERNT -->
                     <button onclick="exportPDF()" class="no-print bg-[#1D1D1F] hover:bg-black text-white px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1 shadow-md">
                         <span class="material-symbols-rounded text-sm">picture_as_pdf</span>
                         <span>PDF</span>
@@ -893,15 +890,6 @@
                     }
                 }
             });
-        }
-
-        function downloadHTML() {
-            const html = document.documentElement.outerHTML;
-            const blob = new Blob([html], {type: 'text/html'});
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'Basisrente_Pro_2025.html';
-            a.click();
         }
 
         function exportPDF() {

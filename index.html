@@ -16,13 +16,11 @@
     <style>
         :root { 
             --ios-bg: #F5F5F7; 
-            --ios-card: rgba(255, 255, 255, 0.8); 
+            --ios-card: rgba(255, 255, 255, 0.85); 
             --ios-text: #1D1D1F; 
-            --ios-subtext: #86868B; 
             --ios-blue: #0071E3; 
             --ios-green: #34C759;
-            --shadow-subtle: 0 4px 20px rgba(0,0,0,0.03);
-            --shadow-hover: 0 10px 30px rgba(0,0,0,0.06);
+            --shadow-subtle: 0 4px 24px rgba(0,0,0,0.03);
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
@@ -34,139 +32,179 @@
             overflow-x: hidden;
         }
 
-        /* --- High-End Login Overlay --- */
+        /* --- PDF Container (Hidden on Screen) --- */
+        /* Optimiert für A4 Single Page */
+        #print-container {
+            display: none; 
+            width: 794px; /* Exakte A4 Breite in Pixeln bei 96dpi (ca.) */
+            min-height: 1123px; /* A4 Höhe */
+            background: white;
+            padding: 40px;
+            color: #1D1D1F;
+            box-sizing: border-box;
+        }
+
+        /* --- Auth Overlay --- */
         #auth-overlay { 
             position: fixed; inset: 0; z-index: 9999; 
-            background: rgba(245, 245, 247, 0.65); 
-            backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); 
+            background: rgba(245, 245, 247, 0.7); 
+            backdrop-filter: blur(35px) saturate(180%); 
             display: flex; justify-content: center; align-items: center; 
-            padding: 20px; transition: all 0.6s var(--ease-spring);
+            padding: 20px; transition: all 0.7s var(--ease-spring);
             opacity: 1; visibility: visible;
         }
-        #auth-overlay.hidden-overlay { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(1.1); }
+        #auth-overlay.hidden-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
         
         #main-app { 
-            transition: filter 0.6s ease, transform 0.6s var(--ease-spring); 
-            filter: blur(15px) grayscale(0.1); transform: scale(0.98); 
-            pointer-events: none; user-select: none; height: 100vh; overflow: hidden; 
+            transition: filter 0.7s ease, transform 0.7s var(--ease-spring); 
+            filter: blur(20px) grayscale(0.2); transform: scale(0.96); 
+            height: 100vh; overflow: hidden; 
         }
         #main-app.active-app { 
             filter: blur(0) grayscale(0); transform: scale(1); 
-            pointer-events: auto; user-select: auto; height: auto; overflow: visible; 
+            height: auto; overflow: visible; 
         }
 
         .auth-card { 
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(50px); 
-            border-radius: 32px; padding: 48px; width: 100%; max-width: 420px; 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.6); 
+            background: rgba(255,255,255,0.95); border-radius: 32px; padding: 48px; 
+            width: 100%; max-width: 440px; box-shadow: 0 40px 80px rgba(0,0,0,0.12); 
         }
 
-        /* --- Premium Cards & Hover Effects --- */
+        /* --- UI Components --- */
         .ios-card { 
-            background-color: var(--ios-card); 
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border-radius: 24px; 
-            box-shadow: var(--shadow-subtle); 
-            border: 1px solid rgba(255,255,255,0.6);
-            transition: transform 0.4s var(--ease-spring), box-shadow 0.4s ease;
-        }
-        .ios-card:hover { transform: translateY(-3px) scale(1.005); box-shadow: var(--shadow-hover); }
-
-        /* --- Inputs --- */
-        .ios-input-group { 
-            background: rgba(239, 239, 244, 0.7); border-radius: 16px; padding: 14px 18px; 
-            margin-bottom: 14px; display: flex; align-items: center; 
-            transition: all 0.3s var(--ease-spring); border: 1px solid transparent;
-        }
-        .ios-input-group:hover { background: #FFFFFF; transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-        .ios-input-group:focus-within { 
-            background: #FFFFFF; border-color: var(--ios-blue); 
-            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15); transform: scale(1.02);
-        }
-        .ios-input { 
-            background: transparent; border: none; width: 100%; 
-            font-size: 16px; font-weight: 500; color: var(--ios-text); 
-            outline: none; margin-left: 10px; 
-        }
-        
-        /* --- Controls --- */
-        .segmented-control { 
-            background: rgba(118, 118, 128, 0.12); border-radius: 12px; padding: 4px; display: flex; 
-        }
-        .segmented-option { 
-            flex: 1; text-align: center; padding: 10px; font-size: 13px; font-weight: 600; 
-            border-radius: 9px; cursor: pointer; color: var(--ios-text); transition: all 0.3s var(--ease-spring); 
-        }
-        .segmented-option.active { 
-            background: #FFFFFF; box-shadow: 0 2px 8px rgba(0,0,0,0.12); transform: scale(1.02);
-        }
-
-        /* --- Custom Dropdowns --- */
-        .custom-select-container { position: relative; cursor: pointer; z-index: 50; }
-        .custom-select-trigger {
-            background: rgba(239, 239, 244, 0.7); border-radius: 16px; padding: 14px 18px;
-            display: flex; justify-content: space-between; align-items: center;
-            font-size: 15px; font-weight: 500; transition: all 0.3s var(--ease-spring);
-        }
-        .custom-select-trigger:hover { background: #FFFFFF; transform: scale(1.02); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-        
-        .custom-select-options {
-            position: absolute; top: 120%; left: 0; right: 0;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 18px; padding: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            background-color: var(--ios-card); backdrop-filter: blur(30px);
+            border-radius: 24px; box-shadow: var(--shadow-subtle); 
             border: 1px solid rgba(255,255,255,0.5);
-            opacity: 0; visibility: hidden; transform: translateY(-15px) scale(0.95);
-            transition: all 0.3s var(--ease-spring);
-            z-index: 100; max-height: 300px; overflow-y: auto;
+            transition: transform 0.5s var(--ease-spring), box-shadow 0.5s ease;
         }
-        .custom-select-container.open .custom-select-options {
-            opacity: 1; visibility: visible; transform: translateY(0) scale(1);
-        }
-        .custom-option {
-            padding: 12px 16px; font-size: 14px; color: var(--ios-text);
-            border-radius: 12px; cursor: pointer; transition: background 0.1s;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .custom-option:hover { background: #0071E3; color: white; }
-        .custom-option.selected { font-weight: 600; color: #0071E3; background: #F5F5F7; }
-        .custom-option.selected:hover { background: #0071E3; color: white; }
+        .ios-card:hover { transform: translateY(-4px) scale(1.008); z-index: 10; }
 
-        /* --- Auth Button --- */
+        .ios-input-group { 
+            background: rgba(239, 239, 244, 0.6); border-radius: 16px; padding: 14px 18px; 
+            margin-bottom: 14px; display: flex; align-items: center; 
+            transition: all 0.4s var(--ease-spring); border: 1px solid transparent;
+        }
+        .ios-input-group:focus-within { background: #FFFFFF; border-color: var(--ios-blue); }
+        .ios-input { background: transparent; border: none; width: 100%; font-size: 16px; font-weight: 500; outline: none; margin-left: 10px; }
+        
+        .segmented-control { background: rgba(118, 118, 128, 0.12); border-radius: 14px; padding: 4px; display: flex; }
+        .segmented-option { flex: 1; text-align: center; padding: 10px; font-size: 13px; font-weight: 600; border-radius: 11px; cursor: pointer; transition: all 0.4s; }
+        .segmented-option.active { background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
         .auth-btn { 
-            background: linear-gradient(135deg, #0071E3, #0077ED); 
-            color: white; width: 100%; padding: 18px; border-radius: 16px; 
-            font-weight: 600; font-size: 16px; border: none; cursor: pointer; 
-            transition: all 0.3s var(--ease-spring); box-shadow: 0 8px 20px rgba(0, 113, 227, 0.25); 
+            background: linear-gradient(135deg, #0071E3, #0077ED); color: white; width: 100%; 
+            padding: 18px; border-radius: 18px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; 
+            transition: all 0.4s var(--ease-spring); 
         }
-        .auth-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 30px rgba(0, 113, 227, 0.35); }
-        .auth-btn:active { transform: scale(0.96); }
+        .auth-btn:hover { transform: scale(1.03); }
 
-        /* Helpers & Layout */
+        /* Custom Dropdowns */
+        .custom-select-container { position: relative; cursor: pointer; z-index: 50; }
+        .custom-select-trigger { background: rgba(239, 239, 244, 0.6); border-radius: 16px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 500; }
+        .custom-select-options { position: absolute; top: 120%; left: 0; right: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(30px); border-radius: 18px; padding: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-15px) scale(0.95); transition: all 0.4s var(--ease-spring); z-index: 100; }
+        .custom-select-container.open .custom-select-options { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .custom-option { padding: 12px 16px; font-size: 14px; border-radius: 12px; display: flex; justify-content: space-between; }
+        .custom-option:hover, .custom-option.selected { background: #0071E3; color: white; }
+
+        .ios-checkbox { appearance: none; width: 22px; height: 22px; border-radius: 6px; background: #E5E5EA; cursor: pointer; position: relative; }
+        .ios-checkbox:checked { background: var(--ios-blue); }
+        .ios-checkbox:checked::after { content: '✓'; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 800; }
+
         #logoutBtn { display: none; }
-        #global-error-box { display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(255, 59, 48, 0.9); backdrop-filter: blur(10px); color: white; padding: 12px 24px; border-radius: 99px; z-index: 10000; box-shadow: 0 10px 30px rgba(255, 59, 48, 0.3); font-size: 14px; font-weight: 600; }
-
-        /* Print Logic */
-        body.pdf-mode { background: white !important; }
-        body.pdf-mode .ios-card { box-shadow: none !important; border: 1px solid #e5e5e5 !important; transform: none !important; }
-        body.pdf-mode #auth-overlay { display: none !important; }
-        @media print { #auth-overlay { display: none !important; } }
+        input[type=range] { width: 100%; cursor: pointer; }
     </style>
 </head>
 <body class="pb-16 min-h-screen flex flex-col relative selection:bg-blue-100 selection:text-blue-900">
 
-    <!-- Global Error Handler -->
-    <div id="global-error-box">
-        <span class="material-symbols-rounded align-middle mr-1 text-lg">error</span>
-        <span id="global-error-msg" class="align-middle">Ein Fehler ist aufgetreten.</span>
-    </div>
+    <!-- === HIDDEN PRINT LAYOUT (Optimiert) === -->
+    <div id="print-container">
+        <!-- Header: Kompakter -->
+        <div class="flex justify-between items-center border-b border-gray-200 pb-4 mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-[#1D1D1F]">Vermögensplanung</h1>
+                <p class="text-xs text-[#86868B] mt-1">Pro Edition 2026</p>
+            </div>
+            <div class="text-right">
+                <div class="text-[10px] text-[#86868B] uppercase font-bold tracking-wider">Erstellt für</div>
+                <div class="text-base font-bold text-[#1D1D1F]" id="printName">Max Mustermann</div>
+                <div class="text-[10px] text-[#86868B]" id="printDate">01.01.2026</div>
+            </div>
+        </div>
 
-    <!-- === AUTH OVERLAY === -->
+        <!-- Key Params Grid: Kompakter -->
+        <div class="grid grid-cols-2 gap-6 mb-6">
+            <div>
+                <h3 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2">Ausgangssituation</h3>
+                <table class="w-full text-xs">
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Status</td><td class="py-1.5 text-right font-semibold" id="printStatus">Angestellt</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Bruttoeinkommen</td><td class="py-1.5 text-right font-semibold" id="printIncome">60.000 €</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Familienstand</td><td class="py-1.5 text-right font-semibold" id="printMarital">Ledig</td></tr>
+                    <tr><td class="py-1.5 text-[#86868B]">Region</td><td class="py-1.5 text-right font-semibold" id="printState">BW</td></tr>
+                </table>
+            </div>
+            <div>
+                <h3 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2">Sparplan</h3>
+                <table class="w-full text-xs">
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Monatliche Rate</td><td class="py-1.5 text-right font-bold text-[#1D1D1F]" id="printSavings">250 €</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Aktuelles Alter</td><td class="py-1.5 text-right font-semibold" id="printAge">30</td></tr>
+                    <tr class="border-b border-gray-100"><td class="py-1.5 text-[#86868B]">Rentenbeginn</td><td class="py-1.5 text-right font-semibold" id="printRetire">67</td></tr>
+                    <tr><td class="py-1.5 text-[#86868B]">Anlagestrategie</td><td class="py-1.5 text-right font-semibold text-[#B8860B]">Chance orientiert</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Main Results Big: Kompakteres Padding -->
+        <div class="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-100">
+            <div class="grid grid-cols-2 gap-6 text-center">
+                <div>
+                    <div class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1">Prognostiziertes Kapital</div>
+                    <div class="text-3xl font-bold text-[#1D1D1F]" id="printCapital">0 €</div>
+                    <div class="text-[9px] text-[#34C759] font-bold mt-1 bg-green-50 inline-block px-2 py-0.5 rounded">Nach Kosten</div>
+                </div>
+                <div class="border-l border-gray-200">
+                    <div class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1">Mögliche Rente</div>
+                    <div class="text-3xl font-bold text-[#0071E3]" id="printPension">0 €</div>
+                    <div class="text-[9px] text-[#86868B] mt-1">Lebenslang ab Alter 67</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tax & Cost Details -->
+        <div class="mb-6">
+            <h3 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2">Steuerliche Betrachtung</h3>
+            <div class="flex justify-between items-center bg-white border border-gray-200 rounded-lg p-3 shadow-sm">
+                <div>
+                    <div class="text-sm font-bold text-[#1D1D1F]">Netto-Aufwand</div>
+                    <div class="text-[10px] text-[#86868B]">Nach Rückerstattung</div>
+                </div>
+                <div class="text-xl font-bold text-[#1D1D1F]" id="printNetEffort">0 €</div>
+                <div class="text-[10px] font-bold text-[#34C759] bg-green-50 px-2 py-1 rounded-md">
+                    Steuervorteil: <span id="printTaxSave">0 €</span> mtl.
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Image: Höhe begrenzt -->
+        <div class="mb-4">
+            <h3 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2">Verlauf</h3>
+            <div style="height: 250px; overflow: hidden; display: flex; justify-content: center; align-items: flex-end;">
+                <img id="printChartImg" style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-[8px] text-[#86868B] border-t border-gray-200 pt-3 leading-tight">
+            <p><strong>Hinweis:</strong> Dies ist eine Modellrechnung auf Basis der Eingaben. Wertentwicklungen der Vergangenheit sind kein Indikator für die Zukunft. Steuerliche Auswirkungen hängen von persönlichen Verhältnissen ab. Kosten für Abschluss (Alpha), Verwaltung (Beta) und Fonds (Gamma) wurden berücksichtigt. Stand: 2026.</p>
+        </div>
+    </div>
+    <!-- === END PRINT LAYOUT === -->
+
+
+    <!-- === AUTH OVERLAY (Unverändert) === -->
     <div id="auth-overlay">
         <div class="auth-card">
             <div class="text-center mb-8">
-                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-[24px] flex items-center justify-center mx-auto mb-6 shadow-md border border-white">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-[28px] flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-100/50 border border-white">
                     <span class="material-symbols-rounded text-4xl">lock_open</span>
                 </div>
                 <h2 class="text-3xl font-bold tracking-tight text-[#1D1D1F] mb-3" id="authTitle">Willkommen</h2>
@@ -182,37 +220,35 @@
                         <input type="text" id="regName" class="ios-input" placeholder="Vollständiger Name">
                     </div>
                 </div>
-                
                 <div class="ios-input-group">
                     <span class="material-symbols-rounded text-[#86868B]">mail</span>
                     <input type="email" id="authEmail" required class="ios-input" placeholder="E-Mail Adresse">
                 </div>
-
                 <div id="phoneField" class="hidden">
                     <div class="ios-input-group">
                         <span class="material-symbols-rounded text-[#86868B]">smartphone</span>
                         <input type="tel" id="regPhone" class="ios-input" placeholder="Mobilnummer">
                     </div>
                 </div>
-
                 <div class="ios-input-group">
                     <span class="material-symbols-rounded text-[#86868B]">key</span>
                     <input type="password" id="authPass" required class="ios-input" placeholder="Passwort (min. 6 Zeichen)" minlength="6">
                 </div>
-
-                <!-- NEU: PASSWORT VERGESSEN LINK -->
-                <div id="forgotPasswordContainer" class="text-right">
-                    <a href="#" id="forgotPasswordBtn" class="text-xs text-[#0071E3] font-medium hover:underline">Passwort vergessen?</a>
+                <div id="consentField" class="hidden pt-2">
+                    <div class="flex items-start gap-3">
+                        <input type="checkbox" id="regConsent" class="ios-checkbox mt-0.5">
+                        <label for="regConsent" class="text-[11px] text-[#86868B] leading-tight cursor-pointer select-none">
+                            Ich stimme der Verarbeitung meiner Daten gemäß der Datenschutzerklärung zu.
+                        </label>
+                    </div>
                 </div>
-
-                <div id="errorMsg" class="text-red-500 text-xs text-center font-medium hidden bg-red-50 p-2 rounded-lg"></div>
-                <div id="successMsg" class="text-green-600 text-xs text-center font-medium hidden bg-green-50 p-2 rounded-lg"></div>
-
-                <button type="submit" class="auth-btn mt-6" id="authBtnLabel">
-                    Anmelden
-                </button>
+                <div id="forgotPasswordContainer" class="text-right pt-1">
+                    <a href="#" id="forgotPasswordBtn" class="text-xs text-[#0071E3] font-semibold hover:underline transition-all">Passwort vergessen?</a>
+                </div>
+                <div id="errorMsg" class="text-red-500 text-xs text-center font-medium hidden bg-red-50 p-3 rounded-xl border border-red-100"></div>
+                <div id="successMsg" class="text-green-600 text-xs text-center font-medium hidden bg-green-50 p-3 rounded-xl border border-green-100"></div>
+                <button type="submit" class="auth-btn mt-6" id="authBtnLabel">Anmelden</button>
             </form>
-
             <div class="text-center mt-8">
                 <button id="toggleAuthMode" class="text-[#0071E3] text-sm font-semibold hover:text-[#005bb5] transition-colors">
                     Noch kein Konto? Jetzt registrieren
@@ -221,24 +257,23 @@
         </div>
     </div>
 
-    <!-- === MAIN APP === -->
+    <!-- === MAIN APP (Unverändert) === -->
     <div id="main-app">
         <!-- Header -->
-        <header class="sticky top-0 z-[90] bg-[#F5F5F7]/80 backdrop-blur-xl border-b border-[rgba(0,0,0,0.05)]">
+        <header class="sticky top-0 z-[90] bg-[#F5F5F7]/85 backdrop-blur-2xl border-b border-[rgba(0,0,0,0.03)]">
             <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
                 <div class="flex items-center gap-4">
-                    <!-- ICON ENTFERNT WIE GEWÜNSCHT -->
                     <div>
                         <h1 class="text-base font-bold tracking-tight text-[#1D1D1F]">Vermögensplanung</h1>
                         <p class="text-[11px] text-[#86868B] uppercase tracking-wider font-bold">Pro Edition 2026</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <button id="logoutBtn" class="bg-white hover:bg-gray-50 text-[#1D1D1F] border border-gray-200 px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-sm hover:shadow-md">
+                    <button id="logoutBtn" class="bg-white hover:bg-gray-50 text-[#1D1D1F] border border-gray-200 px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-105">
                         <span class="material-symbols-rounded text-sm">logout</span>
                         <span>Abmelden</span>
                     </button>
-                    <button onclick="exportPDF()" class="bg-[#1D1D1F] hover:bg-black text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-lg shadow-gray-400/40 hover:scale-105">
+                    <button onclick="exportPDF()" class="bg-[#1D1D1F] hover:bg-black text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-lg shadow-gray-400/30 hover:scale-105 hover:shadow-gray-400/50">
                         <span class="material-symbols-rounded text-sm">picture_as_pdf</span>
                         <span>Exportieren</span>
                     </button>
@@ -248,29 +283,23 @@
 
         <!-- Content Grid -->
         <main id="calculator-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <!-- LEFT: Settings -->
+            <!-- Left Column: Settings -->
             <div class="lg:col-span-4 space-y-6">
-                
                 <!-- Personal Data Card -->
                 <div class="ios-card p-6 relative" style="z-index: 50;">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-blue-50 text-[#0071E3] flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 text-[#0071E3] flex items-center justify-center shadow-sm">
                             <span class="material-symbols-rounded text-xl">person</span>
                         </div>
                         <h2 class="text-lg font-bold text-[#1D1D1F]">Persönliche Daten</h2>
                     </div>
-                    
                     <div class="space-y-5">
-                        <!-- Job Status -->
                         <div>
                             <div class="segmented-control">
                                 <div id="optEmployed" class="segmented-option active" onclick="setEmployment('employed')">Angestellt</div>
                                 <div id="optSelf" class="segmented-option" onclick="setEmployment('selfEmployed')">Selbstständig</div>
                             </div>
                         </div>
-
-                        <!-- Income -->
                         <div>
                             <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Jahresbrutto</label>
                             <div class="ios-input-group">
@@ -278,10 +307,7 @@
                                 <span class="text-[#86868B] font-medium text-sm ml-2">€</span>
                             </div>
                         </div>
-
-                        <!-- Custom Dropdowns -->
                         <div class="grid grid-cols-2 gap-4">
-                            <!-- Dropdown 1 -->
                             <div>
                                 <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Status</label>
                                 <div class="custom-select-container" id="dropdown-marital">
@@ -296,7 +322,6 @@
                                     <input type="hidden" id="maritalStatus" value="single">
                                 </div>
                             </div>
-                            <!-- Dropdown 2 -->
                             <div>
                                 <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Region</label>
                                 <div class="custom-select-container" id="dropdown-state">
@@ -326,17 +351,15 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Toggles -->
-                        <div class="bg-white rounded-2xl p-1 gap-1 flex flex-col border border-gray-100 shadow-sm">
+                        <div class="bg-white rounded-2xl p-1 gap-1 flex flex-col border border-gray-100 shadow-sm transition-transform hover:scale-[1.01] duration-300">
                             <div class="flex justify-between items-center p-3 hover:bg-gray-50 rounded-xl transition-colors">
                                 <span class="text-xs font-bold text-[#1D1D1F] ml-1">Gesetzliche Rente</span>
-                                <input type="checkbox" id="paysGRV" class="accent-[#0071E3] w-5 h-5 cursor-pointer" checked onchange="calculate()">
+                                <input type="checkbox" id="paysGRV" class="ios-checkbox" checked onchange="calculate()">
                             </div>
                             <div class="h-[1px] bg-gray-100 mx-3"></div>
                             <div class="flex justify-between items-center p-3 hover:bg-gray-50 rounded-xl transition-colors">
                                 <span class="text-xs font-bold text-[#1D1D1F] ml-1">Kirchensteuer</span>
-                                <input type="checkbox" id="churchTax" class="accent-[#0071E3] w-5 h-5 cursor-pointer" onchange="calculate()">
+                                <input type="checkbox" id="churchTax" class="ios-checkbox" onchange="calculate()">
                             </div>
                         </div>
                     </div>
@@ -345,12 +368,11 @@
                 <!-- Savings Card -->
                 <div class="ios-card p-6 relative" style="z-index: 40;">
                     <div class="flex items-center gap-3 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-green-50 text-[#34C759] flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-full bg-green-50 text-[#34C759] flex items-center justify-center shadow-sm">
                             <span class="material-symbols-rounded text-xl">savings</span>
                         </div>
                         <h2 class="text-lg font-bold text-[#1D1D1F]">Investition</h2>
                     </div>
-                    
                     <div class="space-y-6">
                         <div>
                             <div class="flex justify-between items-end mb-3">
@@ -359,7 +381,6 @@
                             </div>
                             <input type="range" id="savings" min="50" max="2500" step="10" value="250" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" oninput="calculate()">
                         </div>
-
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Alter</label>
@@ -384,7 +405,6 @@
                         <span class="text-[10px] font-bold bg-[#F2F2F7] px-2 py-1 rounded text-[#86868B]">MIX</span>
                     </div>
                     <p class="text-[11px] text-[#86868B] mb-6">Individuelle Balance zwischen Sicherheit und Rendite.</p>
-                    
                     <div class="relative mb-6">
                         <div class="flex justify-between text-[10px] font-bold text-[#86868B] uppercase tracking-widest mb-2">
                             <span>Sicherheit</span>
@@ -392,7 +412,6 @@
                         </div>
                         <input type="range" id="riskSlider" min="0" max="100" value="100" class="accent-[#B8860B] w-full" oninput="calculate()">
                     </div>
-
                     <div class="flex gap-3 text-center">
                         <div class="flex-1 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
                             <div class="text-[9px] text-[#86868B] uppercase font-bold mb-1">Garantie</div>
@@ -411,10 +430,8 @@
 
             <!-- RIGHT: Results & Chart -->
             <div class="lg:col-span-8 space-y-6">
-                
                 <!-- KPI Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Capital Card -->
                     <div class="ios-card p-8 flex flex-col justify-between h-56 relative overflow-hidden group bg-white">
                         <div class="relative z-10">
                             <div class="flex items-center gap-2 mb-3">
@@ -429,11 +446,8 @@
                                 <span>Nach allen Kosten</span>
                             </div>
                         </div>
-                        <!-- Soft Decor -->
                         <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-gradient-to-br from-green-100/50 to-transparent rounded-full blur-3xl opacity-60 pointer-events-none"></div>
                     </div>
-
-                    <!-- Pension Card -->
                     <div class="ios-card p-8 flex flex-col justify-between h-56 bg-[#1D1D1F] text-white relative overflow-hidden shadow-2xl border-0">
                         <div class="relative z-10">
                             <div class="flex items-center gap-2 mb-3">
@@ -505,13 +519,12 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="h-[320px] w-full">
                         <canvas id="wealthChart"></canvas>
                     </div>
                 </div>
 
-                <!-- DETAILS DROPDOWN (Wiederhergestellt & Verbessert) -->
+                <!-- DETAILS DROPDOWN -->
                 <div class="ios-card overflow-hidden">
                     <details class="group">
                         <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-gray-50 transition-colors">
@@ -532,11 +545,11 @@
                                     <ul class="space-y-3">
                                         <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
                                             <span class="text-[#1D1D1F] font-bold">Alpha (Abschluss)</span>
-                                            <span class="text-gray-500 font-mono">2,50%</span>
+                                            <span class="text-gray-500 font-mono">2,50% d. Summe</span>
                                         </li>
                                         <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
                                             <span class="text-[#1D1D1F] font-bold">Beta (Verwaltung)</span>
-                                            <span class="text-gray-500 font-mono">~12,0%</span>
+                                            <span class="text-gray-500 font-mono">~12,0% Beitrag</span>
                                         </li>
                                         <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
                                             <span class="text-[#1D1D1F] font-bold">Gamma (Fonds)</span>
@@ -565,26 +578,19 @@
                         </div>
                     </details>
                 </div>
-
             </div>
         </main>
     </div>
 
-    <!-- FIREBASE & LOGIC -->
+    <!-- SCRIPT -->
     <script type="module">
-        // Global Error Handler
-        window.onerror = function(msg, url, line) {
-            document.getElementById('global-error-box').style.display = 'block';
-            document.getElementById('global-error-msg').innerText = msg;
-            return false;
-        };
-
-        // --- 1. FIREBASE SETUP ---
+        // 1. Firebase Imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } 
         from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { Chart, registerables } from "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm";
 
-        // !!! ECHTE DATEN (Ihre Konfiguration) !!!
+        // 2. Configuration (IHRE ECHTEN DATEN)
         const firebaseConfig = {
             apiKey: "AIzaSyDKvJxVpK49BsmjgG6C9deuuZ-1q-Q36fk",
             authDomain: "basisrente-app.firebaseapp.com",
@@ -595,34 +601,41 @@
             measurementId: "G-MRML46L886"
         };
 
+        const CONFIG = {
+            allowance: 12096, deductSingle: 27566, deductMarried: 55132, 
+            bbg: 90600, grvRate: 0.186, topTaxThreshold: 68481, 
+            costs: { alpha: 0.025, beta: 0.12, gamma: 0.006 }, pensionFactor: 26.50
+        };
+
+        // 3. Initialization
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        Chart.register(...registerables);
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#86868B';
 
-        // --- 2. AUTH LOGIC ---
-        const authOverlay = document.getElementById('auth-overlay');
-        const mainApp = document.getElementById('main-app');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const authForm = document.getElementById('authForm');
-        const errorMsg = document.getElementById('errorMsg');
-        const successMsg = document.getElementById('successMsg');
-        const forgotBtn = document.getElementById('forgotPasswordBtn');
-        const authEmail = document.getElementById('authEmail');
-        
-        let isRegisterMode = false; 
+        // 4. Variables
+        let wealthChart = null;
+        let isRegisterMode = false;
+        let userEmail = "";
+        let userName = "";
 
+        // 5. Auth Logic
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                authOverlay.classList.add('hidden-overlay');
-                mainApp.classList.add('active-app');
-                logoutBtn.style.display = 'flex';
+                userEmail = user.email;
+                document.getElementById('auth-overlay').classList.add('hidden-overlay');
+                document.getElementById('main-app').classList.add('active-app');
+                document.getElementById('logoutBtn').style.display = 'flex';
+                // Try to get name from local storage if available or default
+                userName = localStorage.getItem('userName') || "Kunde";
             } else {
-                authOverlay.classList.remove('hidden-overlay');
-                mainApp.classList.remove('active-app');
-                logoutBtn.style.display = 'none';
+                document.getElementById('auth-overlay').classList.remove('hidden-overlay');
+                document.getElementById('main-app').classList.remove('active-app');
+                document.getElementById('logoutBtn').style.display = 'none';
             }
         });
 
-        // Toggle Mode
         document.getElementById('toggleAuthMode').addEventListener('click', () => {
             isRegisterMode = !isRegisterMode;
             updateAuthUI();
@@ -635,10 +648,11 @@
             const toggle = document.getElementById('toggleAuthMode');
             const nameField = document.getElementById('nameField');
             const phoneField = document.getElementById('phoneField');
+            const consentField = document.getElementById('consentField');
             const forgotContainer = document.getElementById('forgotPasswordContainer');
-
+            const errorMsg = document.getElementById('errorMsg');
+            
             errorMsg.classList.add('hidden'); 
-            successMsg.classList.add('hidden');
 
             if (isRegisterMode) {
                 title.innerText = "Konto erstellen";
@@ -647,8 +661,10 @@
                 toggle.innerText = "Bereits registriert? Hier anmelden";
                 nameField.classList.remove('hidden');
                 phoneField.classList.remove('hidden');
-                document.getElementById('regName').required = true;
+                consentField.classList.remove('hidden');
                 forgotContainer.style.display = "none";
+                document.getElementById('regName').required = true;
+                document.getElementById('regConsent').required = true;
             } else {
                 title.innerText = "Willkommen zurück";
                 subtitle.innerText = "Bitte melden Sie sich an, um fortzufahren.";
@@ -656,236 +672,156 @@
                 toggle.innerText = "Noch kein Konto? Jetzt registrieren";
                 nameField.classList.add('hidden');
                 phoneField.classList.add('hidden');
-                document.getElementById('regName').required = false;
+                consentField.classList.add('hidden');
                 forgotContainer.style.display = "block";
+                document.getElementById('regName').required = false;
+                document.getElementById('regConsent').required = false;
             }
         }
 
-        // Forgot Password Logic
-        forgotBtn.addEventListener('click', async (e) => {
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = authEmail.value;
-            errorMsg.classList.add('hidden');
-            successMsg.classList.add('hidden');
-
-            if (!email) {
-                errorMsg.innerText = "Bitte geben Sie zuerst Ihre E-Mail Adresse ein.";
-                errorMsg.classList.remove('hidden');
-                return;
-            }
-
-            try {
-                await sendPasswordResetEmail(auth, email);
-                successMsg.innerText = "E-Mail zum Zurücksetzen gesendet! Bitte prüfen Sie Ihr Postfach.";
-                successMsg.classList.remove('hidden');
-            } catch (error) {
-                console.error(error);
-                errorMsg.innerText = getErrorMessage(error.code);
-                errorMsg.classList.remove('hidden');
-            }
-        });
-
-        // Submit
-        authForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = authEmail.value;
+            const email = document.getElementById('authEmail').value;
             const password = document.getElementById('authPass').value;
             const btn = document.querySelector('.auth-btn');
-            const originalBtnText = btn.innerText;
+            const originalText = btn.innerText;
+            const errorMsg = document.getElementById('errorMsg');
             
-            btn.innerHTML = '<span class="material-symbols-rounded animate-spin text-lg">progress_activity</span>';
+            btn.innerHTML = '<span class="material-symbols-rounded animate-spin">progress_activity</span>';
             errorMsg.classList.add('hidden');
-            successMsg.classList.add('hidden');
 
             try {
                 if (isRegisterMode) {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    await createUserWithEmailAndPassword(auth, email, password);
                     const name = document.getElementById('regName').value;
                     const phone = document.getElementById('regPhone').value;
+                    localStorage.setItem('userName', name); // Store name locally for print
+                    userName = name;
                     await sendToMake(name, email, phone);
                 } else {
                     await signInWithEmailAndPassword(auth, email, password);
                 }
             } catch (error) {
                 console.error(error);
-                errorMsg.innerText = getErrorMessage(error.code);
+                let msg = "Fehler bei der Anmeldung.";
+                if (error.code === 'auth/wrong-password') msg = "Falsches Passwort.";
+                if (error.code === 'auth/user-not-found') msg = "Konto nicht gefunden.";
+                if (error.code === 'auth/email-already-in-use') msg = "E-Mail bereits vergeben.";
+                errorMsg.innerText = msg;
                 errorMsg.classList.remove('hidden');
-                btn.innerText = originalBtnText;
+                btn.innerText = originalText;
             }
         });
 
-        // Logout
-        logoutBtn.addEventListener('click', () => signOut(auth));
-
-        // Webhook
-        async function sendToMake(name, email, phone) {
-            const WEBHOOK_URL = 'https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5'; 
+        document.getElementById('forgotPasswordBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const successMsg = document.getElementById('successMsg');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if(!email) {
+                errorMsg.innerText = "Bitte geben Sie Ihre E-Mail Adresse ein.";
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            
             try {
-                await fetch(WEBHOOK_URL, {
+                await sendPasswordResetEmail(auth, email);
+                successMsg.innerText = "E-Mail zum Zurücksetzen gesendet!";
+                successMsg.classList.remove('hidden');
+                errorMsg.classList.add('hidden');
+            } catch(e) {
+                errorMsg.innerText = "Fehler beim Senden: " + e.message;
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+
+        async function sendToMake(name, email, phone) {
+            try {
+                await fetch('https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, phone, date: new Date().toISOString() })
                 });
-            } catch (e) { console.log("Webhook Error", e); }
+            } catch (e) { console.log("Webhook fail", e); }
         }
 
-        function getErrorMessage(code) {
-            switch (code) {
-                case 'auth/email-already-in-use': return "E-Mail bereits vergeben.";
-                case 'auth/invalid-email': return "Ungültige E-Mail.";
-                case 'auth/weak-password': return "Passwort zu schwach (min. 6 Zeichen).";
-                case 'auth/wrong-password': return "Falsches Passwort.";
-                case 'auth/user-not-found': return "Konto nicht gefunden.";
-                case 'auth/invalid-credential': return "Anmeldedaten falsch.";
-                default: return "Fehler: " + code;
-            }
-        }
-        
-        // --- 3. CHART & CALCULATOR ---
-        import { Chart, registerables } from "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm";
-        Chart.register(...registerables);
-        Chart.defaults.font.family = "'Inter', sans-serif";
-        Chart.defaults.color = '#86868B';
-
-        window.calculate = calculate;
-        window.exportPDF = exportPDF;
-        window.setEmployment = setEmployment;
-        
-        // CONFIG
-        const CONFIG = {
-            allowance: 12096, deductSingle: 27566, deductMarried: 55132, 
-            bbg: 90600, grvRate: 0.186, topTaxThreshold: 68481, 
-            costs: { alpha: 0.025, beta: 0.12, gamma: 0.006 }, pensionFactor: 26.50
-        };
-
+        // 6. App Logic (Calculator)
         const fmt = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
         const getVal = (id) => document.getElementById(id).value;
-        const getCheck = (id) => document.getElementById(id).checked;
         const setTxt = (id, txt) => document.getElementById(id).innerText = txt;
 
-        // Custom Select Logic (FIXED & IMPROVED)
-        function initCustomSelect(id) {
-            const container = document.getElementById(id);
-            const trigger = container.querySelector('.custom-select-trigger');
-            const optionsContainer = container.querySelector('.custom-select-options');
-            const options = container.querySelectorAll('.custom-option');
-            const hiddenInput = container.querySelector('input[type="hidden"]');
-            const triggerText = container.querySelector('.trigger-text');
-
-            if (!container) return;
-
-            trigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Close others
-                document.querySelectorAll('.custom-select-container').forEach(c => {
-                    if(c !== container) c.classList.remove('open');
-                });
-                container.classList.toggle('open');
-            });
-
-            options.forEach(option => {
-                option.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const value = option.dataset.value;
-                    const text = option.textContent;
-
-                    hiddenInput.value = value;
-                    triggerText.textContent = text;
-                    
-                    options.forEach(o => o.classList.remove('selected'));
-                    option.classList.add('selected');
-
-                    container.classList.remove('open');
-                    calculate(); 
-                });
-            });
-
-            document.addEventListener('click', () => {
-                container.classList.remove('open');
-            });
-        }
-
-        // Init UI
-        initCustomSelect('dropdown-marital');
-        initCustomSelect('dropdown-state');
-
-        function setEmployment(status) {
+        // Make functions global for inline HTML calls
+        window.setEmployment = function(status) {
             document.getElementById('optEmployed').className = status === 'employed' ? 'segmented-option active' : 'segmented-option';
             document.getElementById('optSelf').className = status === 'selfEmployed' ? 'segmented-option active' : 'segmented-option';
             document.getElementById('paysGRV').checked = (status === 'employed');
             calculate();
-        }
+        };
 
-        let wealthChart = null;
-
-        function calculate() {
+        window.calculate = function() {
             const income = parseFloat(getVal('income')) || 0;
             const savings = parseFloat(getVal('savings'));
             const age = parseFloat(getVal('currentAge'));
             const retireAge = parseFloat(getVal('retirementAge'));
             const risk = parseFloat(getVal('riskSlider')) / 100;
             const marital = getVal('maritalStatus'); 
-            const paysGrv = getCheck('paysGRV');
-            const churchTax = getCheck('churchTax');
+            const paysGrv = document.getElementById('paysGRV').checked;
+            const churchTax = document.getElementById('churchTax').checked;
 
             setTxt('savingsDisplay', fmt(savings));
             setTxt('riskPercent', Math.round(risk * 100) + '%');
             setTxt('securePercent', Math.round((1 - risk) * 100) + '%');
             setTxt('pensionStartDisplay', `Alter ${retireAge}`);
             
-            // Yield based on Risk
-            const yieldRate = (0.02 * (1 - risk)) + (0.07 * risk); // 2% to 7% range
+            const yieldRate = (0.02 * (1 - risk)) + (0.07 * risk);
             setTxt('yieldDisplay', (yieldRate * 100).toFixed(2) + '%');
 
-            // --- Tax Logic ---
+            // Tax Logic
             let taxable = (marital === 'married') ? income / 2 : income;
-            taxable = taxable * 0.82; // Social security proxy
+            taxable = taxable * 0.82; 
             
             let taxRate = 0;
             if(taxable > CONFIG.allowance) {
                 if(taxable > 277826) taxRate = 0.45;
                 else if(taxable > CONFIG.topTaxThreshold) taxRate = 0.42;
-                else {
-                    taxRate = 0.14 + ((taxable - CONFIG.allowance) / (CONFIG.topTaxThreshold - CONFIG.allowance)) * (0.42 - 0.14);
-                }
+                else taxRate = 0.14 + ((taxable - CONFIG.allowance) / (CONFIG.topTaxThreshold - CONFIG.allowance)) * (0.42 - 0.14);
             }
             
             let totalRate = taxRate;
             if(churchTax) totalRate += (taxRate * 0.09);
-            if(taxable > 18130) totalRate += (taxRate * 0.055); // Soli
+            if(taxable > 18130) totalRate += (taxRate * 0.055);
             totalRate = Math.min(totalRate, 0.47); 
 
-            // Deductible
             const maxSpace = (marital === 'married') ? CONFIG.deductMarried : CONFIG.deductSingle;
             let usedGRV = 0;
             if(paysGrv) {
                 const cap = Math.min(income, CONFIG.bbg);
                 usedGRV = cap * CONFIG.grvRate;
                 setTxt('taxNote', 'GRV an');
-            } else {
-                setTxt('taxNote', 'Keine GRV');
-            }
+            } else setTxt('taxNote', 'Keine GRV');
             
             const remaining = Math.max(0, maxSpace - usedGRV);
-            const annualSavings = savings * 12;
-            const effectiveDeductible = Math.min(annualSavings, remaining);
+            const effectiveDeductible = Math.min(savings * 12, remaining);
             
             const taxSaveYear = effectiveDeductible * totalRate;
             const taxSaveMonth = taxSaveYear / 12;
             const net = savings - taxSaveMonth;
-            const subsidy = taxSaveYear / annualSavings;
+            const subsidy = (taxSaveYear / (savings * 12)) * 100;
 
             setTxt('netMonthlyEffort', fmt(net));
             setTxt('monthlyTaxSavings', fmt(taxSaveMonth));
             setTxt('totalTaxSavings', fmt(taxSaveYear * (retireAge - age)));
-            setTxt('subsidyRate', (subsidy * 100).toFixed(1) + '%');
+            setTxt('subsidyRate', subsidy.toFixed(1) + '%');
 
-            // --- Projection Loop ---
+            // Projection
             const duration = retireAge - age;
             const months = duration * 12;
             let capital = 0;
             let paid = 0;
-            const totalSum = annualSavings * duration;
+            const totalSum = savings * 12 * duration;
             const totalAlpha = totalSum * CONFIG.costs.alpha;
             const alphaMonthly = totalAlpha / 60; 
 
@@ -897,10 +833,8 @@
                 for(let i=1; i<=months; i++) {
                     paid += savings;
                     let invest = savings;
-                    
                     if(i <= 60) invest -= alphaMonthly; 
                     invest -= (savings * CONFIG.costs.beta); 
-                    
                     capital += invest;
                     capital = capital * (1 + yieldRate/12); 
                     capital -= (capital * CONFIG.costs.gamma/12); 
@@ -913,19 +847,33 @@
                 }
             }
 
-            setTxt('totalCapital', fmt(capital));
-            const pension = (capital / 10000) * CONFIG.pensionFactor;
-            setTxt('monthlyPension', fmt(pension));
-            setTxt('pension62', fmt(pension * 0.78)); // Abruf 62 Berechnung
+            const finalCapital = capital;
+            const finalPension = (capital / 10000) * CONFIG.pensionFactor;
+
+            setTxt('totalCapital', fmt(finalCapital));
+            setTxt('monthlyPension', fmt(finalPension));
+            setTxt('pension62', fmt(finalPension * 0.78));
 
             updateChart(labels, dataCap, dataInv);
-        }
+            
+            // --- UPDATE PRINT VIEW VARIABLES ---
+            document.getElementById('printStatus').innerText = document.getElementById('optEmployed').className.includes('active') ? "Angestellt" : "Selbstständig";
+            document.getElementById('printIncome').innerText = fmt(income);
+            document.getElementById('printMarital').innerText = document.querySelector('#dropdown-marital .trigger-text').innerText;
+            document.getElementById('printState').innerText = document.querySelector('#dropdown-state .trigger-text').innerText;
+            document.getElementById('printSavings').innerText = fmt(savings);
+            document.getElementById('printAge').innerText = age;
+            document.getElementById('printRetire').innerText = retireAge;
+            document.getElementById('printCapital').innerText = fmt(finalCapital);
+            document.getElementById('printPension').innerText = fmt(finalPension);
+            document.getElementById('printNetEffort').innerText = fmt(net);
+            document.getElementById('printTaxSave').innerText = fmt(taxSaveMonth);
+        };
 
         function updateChart(lbls, cap, inv) {
             const ctx = document.getElementById('wealthChart').getContext('2d');
             if(wealthChart) wealthChart.destroy();
 
-            // Gradient
             const gradient = ctx.createLinearGradient(0, 0, 0, 400);
             gradient.addColorStop(0, 'rgba(52, 199, 89, 0.2)');
             gradient.addColorStop(1, 'rgba(52, 199, 89, 0)');
@@ -935,72 +883,77 @@
                 data: {
                     labels: lbls,
                     datasets: [
-                        {
-                            label: 'Kapital',
-                            data: cap,
-                            borderColor: '#34C759',
-                            backgroundColor: gradient,
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 0,
-                            pointHoverRadius: 6
-                        },
-                        {
-                            label: 'Einzahlung',
-                            data: inv,
-                            borderColor: '#C7C7CC',
-                            borderWidth: 2,
-                            borderDash: [6,6],
-                            fill: false,
-                            tension: 0.4,
-                            pointRadius: 0,
-                            pointHoverRadius: 0
-                        }
+                        { label: 'Kapital', data: cap, borderColor: '#34C759', backgroundColor: gradient, borderWidth: 3, fill: true, tension: 0.4, pointRadius: 0 },
+                        { label: 'Einzahlung', data: inv, borderColor: '#C7C7CC', borderWidth: 2, borderDash: [6,6], fill: false, tension: 0.4, pointRadius: 0 }
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    responsive: true, maintainAspectRatio: false, animation: { duration: 800, easing: 'easeOutQuart' },
                     interaction: { mode: 'index', intersect: false },
-                    plugins: { legend: { display: false }, tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', padding: 12, cornerRadius: 8 } },
-                    scales: { 
-                        x: { display: false }, 
-                        y: { 
-                            border: { display: false }, 
-                            grid: { color: '#F2F2F7' }, 
-                            ticks: { font: { family: 'Inter' }, color: '#86868B', callback: v => (v/1000) + 'k' } 
-                        } 
-                    }
+                    plugins: { legend: { display: false } },
+                    scales: { x: { display: false }, y: { border: { display: false }, grid: { color: '#F2F2F7' }, ticks: { font: { family: 'Inter' }, color: '#86868B', callback: v => (v/1000) + 'k' } } }
                 }
             });
         }
-        
-        function exportPDF() {
-            const el = document.getElementById('calculator-content');
-            const det = document.querySelector('details');
-            if(det) det.setAttribute('open', 'true');
-            
-            document.body.classList.add('pdf-mode');
-            
-            const opt = {
-                margin: 0.4,
-                filename: 'Vermögensplanung_2026.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
 
-            html2pdf().set(opt).from(el).save().then(() => {
-                if(det) det.removeAttribute('open');
-                document.body.classList.remove('pdf-mode');
+        // UI Setup
+        function initCustomSelect(id) {
+            const container = document.getElementById(id);
+            const trigger = container.querySelector('.custom-select-trigger');
+            const hiddenInput = container.querySelector('input[type="hidden"]');
+            const triggerText = container.querySelector('.trigger-text');
+            
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.custom-select-container').forEach(c => c !== container && c.classList.remove('open'));
+                container.classList.toggle('open');
             });
+            container.querySelectorAll('.custom-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    hiddenInput.value = opt.dataset.value;
+                    triggerText.innerText = opt.innerText;
+                    container.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    container.classList.remove('open');
+                    calculate();
+                });
+            });
+            document.addEventListener('click', () => container.classList.remove('open'));
         }
-        
-        // Initial Calc
+        initCustomSelect('dropdown-marital');
+        initCustomSelect('dropdown-state');
+
+        // Initial Calculation
         calculate();
 
+        // 7. PDF Export (Corrected for layout)
+        window.exportPDF = function() {
+            // Update Date and Name in Print View
+            document.getElementById('printDate').innerText = new Date().toLocaleDateString('de-DE');
+            document.getElementById('printName').innerText = userName || "Kunde";
+            
+            // Get Chart Image
+            const chartImg = wealthChart.toBase64Image();
+            document.getElementById('printChartImg').src = chartImg;
+
+            // Generate PDF from hidden container
+            const element = document.getElementById('print-container');
+            // Unhide temporarily
+            element.style.display = 'block';
+            
+            const opt = {
+                margin: 0,
+                filename: 'Vermögensplanung_2026.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' } // Use exact pixel dims
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = 'none'; // Hide again
+            });
+        };
     </script>
 </body>
 </html>

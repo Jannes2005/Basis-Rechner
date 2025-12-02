@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vermögensplanung Pro 2025</title>
+    <title>Vermögensplanung Pro 2026</title>
     
     <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
     <!-- Fonts -->
@@ -15,306 +14,109 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
 
     <style>
-        :root {
-            --apple-bg: #F5F5F7;
-            --apple-text: #1D1D1F;
-            --apple-gray: #86868B;
-            --apple-blue: #0071E3;
-            --apple-green: #34C759;
-            --card-bg: rgba(255, 255, 255, 0.85);
-        }
+        :root { --apple-bg: #F5F5F7; --apple-text: #1D1D1F; --apple-gray: #86868B; --apple-blue: #0071E3; --apple-green: #34C759; --card-bg: rgba(255, 255, 255, 0.85); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--apple-bg); color: var(--apple-text); overflow-x: hidden; }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--apple-bg);
-            color: var(--apple-text);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
+        /* Login Overlay Styles */
+        #auth-overlay { position: fixed; inset: 0; z-index: 9999; background: rgba(245, 245, 247, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); display: flex; justify-content: center; align-items: center; padding: 20px; transition: opacity 0.5s, visibility 0.5s; }
+        #auth-overlay.hidden-overlay { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        #main-app { transition: filter 0.5s; filter: blur(10px); pointer-events: none; user-select: none; height: 100vh; overflow: hidden; }
+        #main-app.active-app { filter: blur(0); pointer-events: auto; user-select: auto; height: auto; overflow: visible; }
 
-        /* --- REGISTRIERUNG & BLUR EFFEKTE --- */
-        #registration-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(245, 245, 247, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 1;
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
-        }
-
-        #registration-overlay.hidden-overlay {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        #main-app {
-            transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s;
-            filter: blur(10px) grayscale(0.2);
-            transform: scale(0.98);
-            pointer-events: none;
-            user-select: none;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #main-app.active-app {
-            filter: blur(0) grayscale(0);
-            transform: scale(1);
-            pointer-events: auto;
-            user-select: auto;
-            height: auto;
-            overflow: visible;
-        }
-
-        .login-card {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.8);
-            max-width: 400px;
-            width: 100%;
-            padding: 32px;
-            animation: floatUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        @keyframes floatUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .login-input {
-            text-align: left !important;
-            padding: 4px 0;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #0071E3, #0077ED);
-            color: white;
-            font-weight: 600;
-            border-radius: 12px;
-            padding: 14px;
-            width: 100%;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-        .login-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(0, 113, 227, 0.4);
-        }
-        .login-btn:active {
-            transform: scale(0.98);
-        }
-        .login-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        /* --- ORIGINAL STYLES --- */
-        .ios-card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            border: 1px solid rgba(255,255,255,0.6);
-        }
-        .ios-input-group {
-            background-color: #F5F5F7;
-            border-radius: 10px;
-            padding: 8px 12px;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-        }
-        .ios-input-group:focus-within {
-            background-color: #FFFFFF;
-            box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2);
-        }
-        .ios-input {
-            background: transparent;
-            border: none;
-            width: 100%;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--apple-text);
-            outline: none;
-            text-align: right;
-        }
-        /* Custom Dropdown Styling */
-        .custom-select-container {
-            position: relative;
-            background-color: #F5F5F7;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .custom-select-container:hover { background-color: #EBEBEC; }
-        .custom-select-trigger {
-            padding: 10px 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1D1D1F;
-        }
-        .custom-select-trigger .material-symbols-rounded {
-            color: #0071E3;
-            font-size: 20px;
-            transition: transform 0.2s;
-        }
-        .custom-select-container.open .custom-select-trigger .material-symbols-rounded { transform: rotate(180deg); }
-        .custom-select-options {
-            position: absolute;
-            top: 110%;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            padding: 5px;
-            z-index: 9999;
-            display: none;
-            max-height: 240px;
-            overflow-y: auto;
-            border: 1px solid rgba(0,0,0,0.05);
-            scrollbar-width: thin;
-        }
-        .custom-select-container.open .custom-select-options { display: block; animation: fadeIn 0.2s ease-out; }
-        .custom-option {
-            padding: 8px 12px;
-            font-size: 13px;
-            color: #1D1D1F;
-            border-radius: 8px;
-            transition: background 0.1s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .custom-option:hover { background-color: #0071E3; color: white; }
-        .custom-option.selected { font-weight: 600; color: #0071E3; background-color: #F5F5F7; }
-        .custom-option.selected:hover { color: white; background-color: #0071E3; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .settings-group { background-color: #FFFFFF; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; }
-        .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; background: #FFFFFF; height: 44px; }
-        .settings-separator { height: 1px; background-color: #E5E5E5; margin-left: 16px; }
-        .toggle-checkbox { display: none; }
-        .toggle-label {
-            width: 38px; height: 22px; background: #E9E9EA; border-radius: 99px; position: relative; cursor: pointer; transition: background 0.3s; display: block;
-        }
-        .toggle-label::after {
-            content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: white; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.2); transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-        .toggle-checkbox:checked + .toggle-label { background: var(--apple-green); }
-        .toggle-checkbox:checked + .toggle-label::after { transform: translateX(16px); }
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: #FFFFFF; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15); margin-top: -10px; border: 0.5px solid rgba(0,0,0,0.04); }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; background: #E5E5E5; border-radius: 2px; }
-        .segmented-control { background-color: rgba(118, 118, 128, 0.12); border-radius: 8px; padding: 2px; display: flex; }
-        .segmented-option { flex: 1; text-align: center; padding: 5px; font-size: 13px; font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; color: var(--apple-text); }
-        .segmented-option.active { background-color: #FFFFFF; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
-
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white; -webkit-print-color-adjust: exact; }
-            .ios-card { box-shadow: none; border: 1px solid #eee; backdrop-filter: none; background: white; }
-            #wealthChart { max-height: 300px; }
-            #registration-overlay { display: none !important; }
-            #main-app { filter: none !important; height: auto !important; transform: none !important; overflow: visible !important; }
-        }
+        .auth-card { background: rgba(255,255,255,0.9); border-radius: 24px; padding: 32px; width: 100%; max-width: 380px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.8); }
+        .ios-input-group { background: #F5F5F7; border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; display: flex; align-items: center; transition: 0.2s; }
+        .ios-input-group:focus-within { background: #FFF; box-shadow: 0 0 0 2px #0071E3; }
+        .ios-input { background: transparent; border: none; width: 100%; font-size: 15px; outline: none; margin-left: 10px; }
+        .auth-btn { background: #0071E3; color: white; width: 100%; padding: 14px; border-radius: 12px; font-weight: 600; border: none; cursor: pointer; transition: 0.2s; margin-top: 10px; }
+        .auth-btn:hover { background: #005bb5; transform: scale(0.99); }
+        .toggle-link { color: #0071E3; font-size: 13px; text-align: center; margin-top: 16px; cursor: pointer; font-weight: 500; }
+        .toggle-link:hover { text-decoration: underline; }
+        
+        /* Logout Button (Hidden by default) */
+        #logoutBtn { display: none; }
+        
+        /* General Styles */
+        .ios-card { background-color: var(--card-bg); backdrop-filter: blur(20px); border-radius: 18px; border: 1px solid rgba(255,255,255,0.6); }
+        .settings-group { background: #FFF; border-radius: 12px; overflow: hidden; }
+        .settings-row { display: flex; justify-content: space-between; padding: 10px 16px; align-items: center; height: 44px; }
+        .segmented-control { background: rgba(118, 118, 128, 0.12); border-radius: 8px; padding: 2px; display: flex; }
+        .segmented-option { flex: 1; text-align: center; padding: 5px; font-size: 13px; font-weight: 500; border-radius: 6px; cursor: pointer; }
+        .segmented-option.active { background: #FFF; font-weight: 600; shadow: 0 1px 3px rgba(0,0,0,0.12); }
+        input[type=range] { width: 100%; }
+        /* Print/PDF */
         body.pdf-mode { background: white !important; }
-        body.pdf-mode .ios-card { box-shadow: none !important; border: 1px solid #e5e5e5 !important; backdrop-filter: none !important; background: white !important; }
-        body.pdf-mode details[open] summary ~ * { animation: none !important; }
-        #map { display: none; }
+        body.pdf-mode .ios-card { box-shadow: none !important; border: 1px solid #e5e5e5 !important; }
+        #auth-overlay { display: none !important; }
     </style>
 </head>
 <body class="pb-16 min-h-screen flex flex-col relative">
 
-    <!-- === REGISTRIERUNGS-OVERLAY === -->
-    <div id="registration-overlay">
-        <div class="login-card">
+    <!-- === AUTH OVERLAY === -->
+    <div id="auth-overlay">
+        <div class="auth-card">
             <div class="text-center mb-6">
-                <div class="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                    <span class="material-symbols-rounded text-3xl">lock_open</span>
+                <div class="w-12 h-12 bg-blue-50 text-[#0071E3] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span class="material-symbols-rounded text-2xl">lock</span>
                 </div>
-                <h2 class="text-2xl font-bold text-[#1D1D1F] tracking-tight">Rechner freischalten</h2>
-                <p class="text-sm text-[#86868B] mt-2 leading-relaxed">
-                    Registrieren Sie sich jetzt, um Zugriff auf den Basisrenten-Rechner Pro 2026 zu erhalten.
-                </p>
+                <h2 class="text-xl font-bold text-[#1D1D1F]" id="authTitle">Anmelden</h2>
+                <p class="text-xs text-[#86868B] mt-1" id="authSubtitle">Loggen Sie sich ein, um fortzufahren.</p>
             </div>
 
-            <form id="leadForm" onsubmit="submitLead(event)" class="space-y-4">
-                <div>
-                    <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-1.5 ml-1">Vollständiger Name</label>
+            <form id="authForm">
+                <!-- Name (Only for Register) -->
+                <div id="nameField" class="hidden">
                     <div class="ios-input-group">
-                        <span class="material-symbols-rounded text-[#86868B] text-lg mr-2">person</span>
-                        <input type="text" id="leadName" required class="ios-input login-input" placeholder="Max Mustermann">
+                        <span class="material-symbols-rounded text-[#86868B]">person</span>
+                        <input type="text" id="regName" class="ios-input" placeholder="Ihr Name">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-1.5 ml-1">E-Mail Adresse</label>
+                
+                <!-- Email -->
+                <div class="ios-input-group">
+                    <span class="material-symbols-rounded text-[#86868B]">mail</span>
+                    <input type="email" id="authEmail" required class="ios-input" placeholder="E-Mail Adresse">
+                </div>
+
+                <!-- Phone (Only for Register) -->
+                <div id="phoneField" class="hidden">
                     <div class="ios-input-group">
-                        <span class="material-symbols-rounded text-[#86868B] text-lg mr-2">mail</span>
-                        <input type="email" id="leadEmail" required class="ios-input login-input" placeholder="max@beispiel.de">
+                        <span class="material-symbols-rounded text-[#86868B]">smartphone</span>
+                        <input type="tel" id="regPhone" class="ios-input" placeholder="Handynummer">
                     </div>
                 </div>
-                <div>
-                    <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-1.5 ml-1">Handynummer</label>
-                    <div class="ios-input-group">
-                        <span class="material-symbols-rounded text-[#86868B] text-lg mr-2">smartphone</span>
-                        <input type="tel" id="leadPhone" required pattern="[0-9+\s\-]+" minlength="6" class="ios-input login-input" placeholder="0171 12345678">
-                    </div>
+
+                <!-- Password -->
+                <div class="ios-input-group">
+                    <span class="material-symbols-rounded text-[#86868B]">key</span>
+                    <input type="password" id="authPass" required class="ios-input" placeholder="Passwort" minlength="6">
                 </div>
-                <div class="flex items-start gap-3 pt-3 pb-2">
-                    <div class="flex items-center h-5">
-                        <input type="checkbox" required id="consent" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                    </div>
-                    <label for="consent" class="text-[11px] text-[#86868B] leading-tight cursor-pointer">
-                        Ich stimme der Verarbeitung meiner Daten zu.
-                    </label>
-                </div>
-                <button type="submit" id="submitBtn" class="login-btn flex items-center justify-center gap-2 mt-2 group">
-                    <span>Kostenlos berechnen</span>
-                    <span class="material-symbols-rounded group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                </button>
+
+                <div id="errorMsg" class="text-red-500 text-[11px] text-center mb-2 hidden"></div>
+
+                <button type="submit" class="auth-btn" id="authBtnLabel">Einloggen</button>
             </form>
-            <p class="text-center text-[10px] text-gray-400 mt-6 flex items-center justify-center gap-1">
-                <span class="material-symbols-rounded text-xs">secure</span>
-                SSL-Verschlüsselte Übertragung
-            </p>
+
+            <div class="toggle-link" id="toggleAuthMode">
+                Noch kein Konto? Jetzt registrieren
+            </div>
         </div>
     </div>
 
-    <!-- === HAUPTANWENDUNG === -->
+    <!-- === MAIN APP === -->
     <div id="main-app">
-        <!-- HEADER Z-INDEX ERHÖHT auf 100 -->
         <header class="sticky top-0 z-[100] bg-[#F5F5F7]/90 backdrop-blur-md border-b border-gray-200/80">
             <div class="max-w-7xl mx-auto px-6 h-14 flex justify-between items-center">
                 <div>
                     <h1 class="text-base font-bold tracking-tight text-[#1D1D1F]">Vermögensplanung</h1>
-                    <p class="text-[10px] text-[#86868B] uppercase tracking-wide">Basisrente 2025</p>
+                    <p class="text-[10px] text-[#86868B] uppercase tracking-wide">Basisrente 2026</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <!-- SPEICHERN BUTTON ENTFERNT -->
-                    <button onclick="exportPDF()" class="no-print bg-[#1D1D1F] hover:bg-black text-white px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1 shadow-md">
+                    <button id="logoutBtn" class="bg-gray-200 hover:bg-gray-300 text-[#1D1D1F] px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1">
+                        <span class="material-symbols-rounded text-sm">logout</span>
+                        <span>Abmelden</span>
+                    </button>
+                    <button onclick="exportPDF()" class="bg-[#1D1D1F] hover:bg-black text-white px-3 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1 shadow-md">
                         <span class="material-symbols-rounded text-sm">picture_as_pdf</span>
                         <span>PDF</span>
                     </button>
@@ -323,7 +125,7 @@
         </header>
 
         <main id="calculator-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <!-- Left Column: Settings -->
+            <!-- Left Column -->
             <div class="lg:col-span-4 space-y-5">
                 <div class="ios-card p-5 relative" style="z-index: 50;">
                     <div class="flex items-center gap-2 mb-4">
@@ -564,7 +366,7 @@
                         <canvas id="wealthChart" width="752" height="280"></canvas>
                     </div>
                     <p class="text-[9px] text-gray-400 mt-4 text-center mx-auto max-w-lg leading-relaxed">
-                        *Modellrechnung Stand 2025. Inkl. Kosten (Alpha, Beta, Gamma). Steuerliche Annahmen ohne Gewähr.
+                        *Modellrechnung Stand 2026. Inkl. Kosten (Alpha, Beta, Gamma). Steuerliche Annahmen ohne Gewähr.
                     </p>
                 </div>
 
@@ -621,64 +423,198 @@
         </main>
     </div>
 
-    <!-- Logic Script -->
-    <script>
-        // --- LEAD CAPTURE & WEBHOOK LOGIC ---
+    <!-- FIREBASE & LOGIC -->
+    <script type="module">
+        // --- 1. FIREBASE KONFIGURATION ---
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // !!! HIER SIND JETZT IHRE ECHTEN DATEN !!!
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKvJxVpK49BsmjgG6C9deuuZ-1q-Q36fk",
+            authDomain: "basisrente-app.firebaseapp.com",
+            projectId: "basisrente-app",
+            storageBucket: "basisrente-app.firebasestorage.app",
+            messagingSenderId: "28252529082",
+            appId: "1:28252529082:web:0425733a7442b4fa3efd83",
+            measurementId: "G-MRML46L886"
+        };
+
+        // Init Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // --- 2. AUTHENTICATION LOGIC ---
+        const authOverlay = document.getElementById('auth-overlay');
+        const mainApp = document.getElementById('main-app');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const authForm = document.getElementById('authForm');
+        const errorMsg = document.getElementById('errorMsg');
         
-        async function submitLead(e) {
-            e.preventDefault();
+        let isRegisterMode = false; // Start with Login
 
-            // --- HIER DIE ECHTE URL EINGEFÜGT ---
-            const WEBHOOK_URL = 'https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5'; 
-            // ------------------------------------
-
-            const name = document.getElementById('leadName').value;
-            const email = document.getElementById('leadEmail').value;
-            const phone = document.getElementById('leadPhone').value;
-            const btn = document.getElementById('submitBtn');
-            const originalText = btn.innerHTML;
-
-            // UI Loading State
-            btn.innerHTML = '<span class="material-symbols-rounded animate-spin">progress_activity</span>';
-            btn.disabled = true;
-
-            const payload = {
-                name: name,
-                email: email,
-                phone: phone,
-                date: new Date().toISOString()
-            };
-
-            try {
-                if(WEBHOOK_URL) {
-                    await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    console.log('Lead erfolgreich an Webhook gesendet');
-                } else {
-                    console.warn('Keine Webhook URL hinterlegt.');
-                }
-            } catch (error) {
-                console.error('Fehler beim Senden:', error);
-                // Im Fehlerfall trotzdem den Rechner öffnen, um den User nicht zu verlieren
+        // Check Login Status (Persistence)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User ist eingeloggt
+                console.log("Eingeloggt als:", user.email);
+                unlockApp();
+            } else {
+                // User ist ausgeloggt
+                lockApp();
             }
+        });
 
-            // Kurze Verzögerung für UX
-            setTimeout(() => {
-                document.getElementById('registration-overlay').classList.add('hidden-overlay');
-                document.getElementById('main-app').classList.add('active-app');
-            }, 600);
+        function unlockApp() {
+            authOverlay.classList.add('hidden-overlay');
+            mainApp.classList.add('active-app');
+            logoutBtn.style.display = 'flex';
         }
 
-        // --- CALCULATOR LOGIC (Standard) ---
+        function lockApp() {
+            authOverlay.classList.remove('hidden-overlay');
+            mainApp.classList.remove('active-app');
+            logoutBtn.style.display = 'none';
+        }
+
+        // Toggle Login / Register
+        document.getElementById('toggleAuthMode').addEventListener('click', () => {
+            isRegisterMode = !isRegisterMode;
+            updateAuthUI();
+        });
+
+        function updateAuthUI() {
+            const title = document.getElementById('authTitle');
+            const subtitle = document.getElementById('authSubtitle');
+            const btn = document.getElementById('authBtnLabel');
+            const toggle = document.getElementById('toggleAuthMode');
+            const nameField = document.getElementById('nameField');
+            const phoneField = document.getElementById('phoneField');
+
+            errorMsg.classList.add('hidden'); // Clear errors
+
+            if (isRegisterMode) {
+                title.innerText = "Registrieren";
+                subtitle.innerText = "Erstellen Sie ein Konto für den Rechner 2026.";
+                btn.innerText = "Kostenlos registrieren";
+                toggle.innerText = "Bereits ein Konto? Hier einloggen";
+                nameField.classList.remove('hidden');
+                phoneField.classList.remove('hidden');
+                document.getElementById('regName').required = true;
+            } else {
+                title.innerText = "Anmelden";
+                subtitle.innerText = "Loggen Sie sich ein, um fortzufahren.";
+                btn.innerText = "Einloggen";
+                toggle.innerText = "Noch kein Konto? Jetzt registrieren";
+                nameField.classList.add('hidden');
+                phoneField.classList.add('hidden');
+                document.getElementById('regName').required = false;
+            }
+        }
+
+        // Handle Form Submit
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPass').value;
+            const btn = document.querySelector('.auth-btn');
+            
+            btn.innerHTML = '<span class="material-symbols-rounded animate-spin">progress_activity</span>';
+            errorMsg.classList.add('hidden');
+
+            try {
+                if (isRegisterMode) {
+                    // --- REGISTRIERUNG ---
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    
+                    // Daten an MAKE senden (nur bei Registrierung!)
+                    const name = document.getElementById('regName').value;
+                    const phone = document.getElementById('regPhone').value;
+                    await sendToMake(name, email, phone);
+                    
+                } else {
+                    // --- LOGIN ---
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+                // onAuthStateChanged handles the unlocking automatically
+            } catch (error) {
+                console.error(error);
+                errorMsg.innerText = getErrorMessage(error.code);
+                errorMsg.classList.remove('hidden');
+                btn.innerText = isRegisterMode ? "Kostenlos registrieren" : "Einloggen";
+            }
+        });
+
+        // Logout Logic
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                console.log("Ausgeloggt");
+                // UI updates automatically via onAuthStateChanged
+            });
+        });
+
+        // Make Webhook (Ihre URL)
+        async function sendToMake(name, email, phone) {
+            const WEBHOOK_URL = 'https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5'; 
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, phone, date: new Date().toISOString() })
+                });
+            } catch (e) { console.log("Make Error (ignoriert)", e); }
+        }
+
+        function getErrorMessage(code) {
+            switch (code) {
+                case 'auth/email-already-in-use': return "Diese E-Mail wird bereits verwendet.";
+                case 'auth/invalid-email': return "Ungültige E-Mail Adresse.";
+                case 'auth/weak-password': return "Passwort muss mind. 6 Zeichen haben.";
+                case 'auth/wrong-password': return "Falsches Passwort.";
+                case 'auth/user-not-found': return "Kein Konto mit dieser E-Mail gefunden.";
+                case 'auth/invalid-credential': return "Zugangsdaten ungültig.";
+                default: return "Ein Fehler ist aufgetreten: " + code;
+            }
+        }
+        
+        // --- 3. FIX FOR CHART.JS REGISTRATION ---
+        // Expose calculate/export to window because module script is isolated
+        import { Chart, registerables } from "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm";
+        
+        // Register all components (Line controller, scales, etc.)
+        Chart.register(...registerables);
+
+        window.calculate = calculate;
+        window.exportPDF = exportPDF;
+        
+        // --- RECHNER LOGIK ---
+        // Config 2025 (Estimates based on current trends)
+        const CONFIG = {
+            allowance: 12096, // Grundfreibetrag 2025
+            deductSingle: 27566, // Max Rürup Deductible Single
+            deductMarried: 55132, // Max Rürup Deductible Married
+            bbg: 90600, // Beitragsbemessungsgrenze Rentenversicherung West 2025
+            grvRate: 0.186, // GRV Rate
+            topTaxThreshold: 68481, // Spitzensteuersatz Start
+            costs: { alpha: 0.025, beta: 0.12, gamma: 0.006 },
+            pensionFactor: 26.50
+        };
+
+        const fmt = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+        const getVal = (id) => document.getElementById(id).value;
+        const getCheck = (id) => document.getElementById(id).checked;
+        const setTxt = (id, txt) => document.getElementById(id).innerText = txt;
+
+        // Custom Select Init
         function initCustomSelect(id) {
             const container = document.getElementById(id);
             const trigger = container.querySelector('.custom-select-trigger');
             const options = container.querySelectorAll('.custom-option');
             const hiddenInput = container.querySelector('input[type="hidden"]');
             const triggerText = container.querySelector('span:first-child');
+
             trigger.addEventListener('click', (e) => {
                 document.querySelectorAll('.custom-select-container').forEach(c => {
                     if(c !== container) c.classList.remove('open');
@@ -686,6 +622,7 @@
                 container.classList.toggle('open');
                 e.stopPropagation();
             });
+
             options.forEach(option => {
                 option.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -694,39 +631,28 @@
                     options.forEach(o => o.classList.remove('selected'));
                     option.classList.add('selected');
                     container.classList.remove('open');
-                    calculate(); 
+                    calculate();
                 });
             });
+
             document.addEventListener('click', (e) => {
                 if (!container.contains(e.target)) container.classList.remove('open');
             });
         }
-        document.addEventListener('DOMContentLoaded', () => {
-            initCustomSelect('dropdown-marital');
-            initCustomSelect('dropdown-state');
-            calculate(); 
-        });
 
-        let employmentStatus = 'employed';
-        let wealthChart = null;
-        const CONFIG = {
-            allowance: 12096, deductSingle: 27566, deductMarried: 55132, 
-            bbg: 90600, grvRate: 0.186, topTaxThreshold: 68481, 
-            costs: { alpha: 0.025, beta: 0.12, gamma: 0.006 }, pensionFactor: 26.50
-        };
+        // Init UI
+        initCustomSelect('dropdown-marital');
+        initCustomSelect('dropdown-state');
 
-        const fmt = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
-        const getVal = (id) => document.getElementById(id).value;
-        const getCheck = (id) => document.getElementById(id).checked;
-        const setTxt = (id, txt) => document.getElementById(id).innerText = txt;
-
-        function setEmployment(status) {
-            employmentStatus = status;
+        // Global Helper for Employment
+        window.setEmployment = function(status) {
             document.getElementById('optEmployed').className = status === 'employed' ? 'segmented-option active' : 'segmented-option';
             document.getElementById('optSelf').className = status === 'selfEmployed' ? 'segmented-option active' : 'segmented-option';
             document.getElementById('paysGRV').checked = (status === 'employed');
             calculate();
         }
+
+        let wealthChart = null;
 
         function calculate() {
             const income = parseFloat(getVal('income')) || 0;
@@ -746,6 +672,7 @@
             const yieldRate = (0.015 * (1 - risk)) + (0.065 * risk);
             setTxt('yieldDisplay', (yieldRate * 100).toFixed(2) + '%');
 
+            // --- Tax Logic (2025 Proxy) ---
             let taxable = (marital === 'married') ? income / 2 : income;
             taxable = taxable * 0.82; 
             
@@ -753,21 +680,27 @@
             if(taxable > CONFIG.allowance) {
                 if(taxable > 277826) taxRate = 0.45;
                 else if(taxable > CONFIG.topTaxThreshold) taxRate = 0.42;
-                else taxRate = 0.14 + ((taxable - CONFIG.allowance) / (CONFIG.topTaxThreshold - CONFIG.allowance)) * (0.42 - 0.14);
+                else {
+                    taxRate = 0.14 + ((taxable - CONFIG.allowance) / (CONFIG.topTaxThreshold - CONFIG.allowance)) * (0.42 - 0.14);
+                }
             }
             
             let totalRate = taxRate;
             if(churchTax) totalRate += (taxRate * 0.09);
             if(taxable > 18130) totalRate += (taxRate * 0.055);
+            
             totalRate = Math.min(totalRate, 0.47); 
 
+            // Deductible Logic
             const maxSpace = (marital === 'married') ? CONFIG.deductMarried : CONFIG.deductSingle;
             let usedGRV = 0;
             if(paysGrv) {
                 const cap = Math.min(income, CONFIG.bbg);
                 usedGRV = cap * CONFIG.grvRate;
                 setTxt('taxNote', 'GRV an');
-            } else setTxt('taxNote', 'Keine GRV');
+            } else {
+                setTxt('taxNote', 'Keine GRV');
+            }
             
             const remaining = Math.max(0, maxSpace - usedGRV);
             const annualSavings = savings * 12;
@@ -783,6 +716,7 @@
             setTxt('totalTaxSavings', fmt(taxSaveYear * (retireAge - age)));
             setTxt('subsidyRate', (subsidy * 100).toFixed(1) + '%');
 
+            // --- Projection ---
             const duration = retireAge - age;
             const months = duration * 12;
             let capital = 0;
@@ -799,11 +733,14 @@
                 for(let i=1; i<=months; i++) {
                     paid += savings;
                     let invest = savings;
+                    
                     if(i <= 60) invest -= alphaMonthly; 
                     invest -= (savings * CONFIG.costs.beta); 
+                    
                     capital += invest;
                     capital = capital * (1 + yieldRate/12); 
                     capital -= (capital * CONFIG.costs.gamma/12); 
+
                     if(i % 12 === 0) {
                         dataCap.push(capital);
                         dataInv.push(paid);
@@ -816,12 +753,14 @@
             const pension = (capital / 10000) * CONFIG.pensionFactor;
             setTxt('monthlyPension', fmt(pension));
             setTxt('pension62', fmt(pension * 0.78));
+
             updateChart(labels, dataCap, dataInv);
         }
 
         function updateChart(lbls, cap, inv) {
             const ctx = document.getElementById('wealthChart').getContext('2d');
             if(wealthChart) wealthChart.destroy();
+
             const grad = ctx.createLinearGradient(0,0,0,300);
             grad.addColorStop(0, '#34C759');
             grad.addColorStop(1, 'rgba(52, 199, 89, 0.0)');
@@ -859,23 +798,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     animation: { duration: 600 },
-                    plugins: { 
-                        legend: { display: false }, 
-                        tooltip: { 
-                            mode: 'index', 
-                            intersect: false,
-                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                            titleColor: '#1d1d1f',
-                            bodyColor: '#1d1d1f',
-                            borderColor: 'rgba(0,0,0,0.1)',
-                            borderWidth: 1,
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': ' + fmt(context.raw);
-                                }
-                            }
-                        } 
-                    },
+                    plugins: { legend: { display: false } },
                     scales: { 
                         x: { display: false }, 
                         y: { 
@@ -891,7 +814,7 @@
                 }
             });
         }
-
+        
         function exportPDF() {
             const el = document.getElementById('calculator-content');
             const det = document.querySelector('details');
@@ -910,6 +833,10 @@
                 document.body.classList.remove('pdf-mode');
             });
         }
+        
+        // Initial Calc
+        calculate();
+
     </script>
 </body>
 </html>

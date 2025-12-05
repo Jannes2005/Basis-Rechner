@@ -1,1 +1,944 @@
-<!DOCTYPE html><html lang="de" oncontextmenu="return false"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>BASISRENTE Pro 2026</title><link rel="icon" href="Design ohne Titel (57).png" type="image/png"><link rel="apple-touch-icon" href="Design ohne Titel (57).png"><script src="https://cdn.tailwindcss.com"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0"><style>:root{--ios-bg:#F5F5F7;--ios-card:rgba(255,255,255,0.9);--ios-text:#1D1D1F;--ios-subtext:#86868B;--ios-blue:#0071E3;--ios-green:#34C759;--ios-gold:#B8860B;--shadow-subtle:0 4px 24px rgba(0,0,0,0.04);--shadow-hover:0 12px 40px rgba(0,0,0,0.08);--ease-spring:cubic-bezier(0.34,1.56,0.64,1)}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background-color:var(--ios-bg);color:var(--ios-text);-webkit-font-smoothing:antialiased;overflow-x:hidden;user-select:none}#auth-overlay{position:fixed;inset:0;z-index:9999;background:rgba(245,245,247,0.4);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);display:flex;justify-content:center;align-items:center;padding:20px;transition:opacity 0.8s var(--ease-spring),visibility 0.8s;opacity:1;visibility:visible}#auth-overlay.hidden-overlay{opacity:0;visibility:hidden;pointer-events:none}#main-app{transition:filter 0.8s ease,transform 0.8s var(--ease-spring);filter:blur(15px);transform:scale(0.98);pointer-events:none;height:100vh;overflow:hidden}#main-app.active-app{filter:blur(0);transform:scale(1);pointer-events:auto;height:auto;overflow:visible}.auth-card{background:rgba(255,255,255,0.85);border-radius:32px;padding:40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.5)}.ios-card{background-color:var(--ios-card);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-radius:24px;box-shadow:var(--shadow-subtle);border:1px solid rgba(255,255,255,0.6);transition:transform 0.4s var(--ease-spring),box-shadow 0.4s ease,border-color 0.3s}.ios-card:hover{transform:translateY(-4px) scale(1.005);box-shadow:var(--shadow-hover);border-color:rgba(255,255,255,0.9);z-index:10}.ios-input-group{background:rgba(239,239,244,0.7);border-radius:14px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;transition:all 0.3s var(--ease-spring);border:1px solid transparent}.ios-input-group:focus-within{background:#FFFFFF;border-color:var(--ios-blue);box-shadow:0 0 0 4px rgba(0,113,227,0.15);transform:scale(1.01)}.ios-input{background:transparent;border:none;width:100%;font-size:16px;font-weight:500;color:var(--ios-text);outline:none;margin-left:10px}.toggle-switch{appearance:none;width:52px;height:32px;background:#E9E9EA;border-radius:99px;position:relative;cursor:pointer;transition:background 0.3s ease;flex-shrink:0}.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:28px;height:28px;background:white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:transform 0.3s var(--ease-spring)}.toggle-switch:checked{background:var(--ios-green)}.toggle-switch:checked::after{transform:translateX(20px)}.toggle-switch:disabled{opacity:0.5;cursor:not-allowed}.segmented-control{background:rgba(118,118,128,0.12);border-radius:14px;padding:4px;display:flex}.segmented-option{flex:1;text-align:center;padding:10px;font-size:13px;font-weight:600;border-radius:11px;cursor:pointer;color:var(--ios-text);transition:all 0.4s var(--ease-spring)}.segmented-option.active{background:#FFFFFF;box-shadow:0 4px 12px rgba(0,0,0,0.1);transform:scale(1.02)}.auth-btn{background:linear-gradient(135deg,#0071E3,#0077ED);color:white;width:100%;padding:16px;border-radius:16px;font-weight:600;font-size:16px;border:none;cursor:pointer;transition:all 0.4s var(--ease-spring);box-shadow:0 8px 20px rgba(0,113,227,0.25)}.auth-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 15px 35px rgba(0,113,227,0.35)}.auth-btn:active{transform:scale(0.97)}.auth-btn:disabled{opacity:0.7;cursor:wait;transform:none}.custom-select-container{position:relative;cursor:pointer;z-index:50}.custom-select-trigger{background:rgba(239,239,244,0.7);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:500;transition:all 0.3s}.custom-select-trigger:hover{background:#FFFFFF;transform:scale(1.01)}.custom-select-options{position:absolute;top:120%;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(30px);border-radius:18px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.5);opacity:0;visibility:hidden;transform:translateY(-15px) scale(0.95);transition:all 0.3s var(--ease-spring);z-index:100;max-height:300px;overflow-y:auto}.custom-select-container.open .custom-select-options{opacity:1;visibility:visible;transform:translateY(0) scale(1)}.custom-option{padding:12px 16px;font-size:14px;border-radius:12px;transition:0.1s;display:flex;justify-content:space-between}.custom-option:hover{background:var(--ios-blue);color:white}.custom-option.selected{background:#F5F5F7;color:var(--ios-blue);font-weight:700}input[type=range]{-webkit-appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;margin:0;padding:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:4px;border-radius:99px;border:1px solid rgba(0,0,0,0.05)}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:28px;width:28px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 8px rgba(0,0,0,0.15);margin-top:-12px;border:0.5px solid rgba(0,0,0,0.04);transition:transform 0.1s}input[type=range]:active::-webkit-slider-thumb{transform:scale(1.1)}#print-container{position:fixed;left:-9999px;top:0;width:210mm;min-height:297mm;background:white;padding:15mm 20mm;color:#1D1D1F;box-sizing:border-box;font-family:'Inter',sans-serif;z-index:-1}.print-row{display:flex;justify-content:space-between;margin-bottom:4mm}.print-col{width:48%}.print-table{width:100%;border-collapse:collapse;font-size:10pt}.print-table td{padding:2mm 0;border-bottom:1px solid #eee}.print-table td:last-child{text-align:right;font-weight:600}.print-card{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:4mm;padding:6mm;margin-bottom:6mm}.print-h1{font-size:24pt;font-weight:700;margin-bottom:2mm;color:#1D1D1F;text-transform:uppercase;letter-spacing:1px}.print-h3{font-size:10pt;font-weight:700;text-transform:uppercase;color:#86868B;margin-bottom:3mm;letter-spacing:0.5px}.print-big-num{font-size:28pt;font-weight:700;color:#1D1D1F;margin:2mm 0}.print-label{font-size:9pt;font-weight:600;text-transform:uppercase;color:#86868B}#logoutBtn,#global-error-box{display:none}</style></head><body class="pb-16 min-h-screen flex flex-col relative selection:bg-blue-100 selection:text-blue-900"><div id="global-error-box">Ein Fehler ist aufgetreten.</div><div id="print-container"><div class="print-row" style="border-bottom:2px solid #f3f4f6;padding-bottom:20px;align-items:center;"><div><div class="print-h1">BASISRENTE</div><div style="font-size:14px;color:#86868B;">Pro Edition 2026</div></div><div style="text-align:right;"><div class="print-label">Kunde</div><div style="font-size:16px;font-weight:bold;margin-bottom:4px;" id="printName">Max Mustermann</div><div style="font-size:12px;color:#86868B;" id="printDate">01.01.2026</div></div></div><div class="print-row" style="margin-top:30px;"><div class="print-col"><div class="print-h3">Ihre Angaben</div><table class="print-table"><tr><td>Status</td><td id="printStatus">Angestellt</td></tr><tr><td>Zu versteuerndes Einkommen</td><td id="printIncome">60.000 €</td></tr><tr><td>Familienstand</td><td id="printMarital">Ledig</td></tr><tr><td>Bundesland</td><td id="printState">BW</td></tr></table></div><div class="print-col"><div class="print-h3">Sparplan</div><table class="print-table"><tr><td>Monatliche Rate</td><td id="printSavings">250 €</td></tr><tr><td>Aktuelles Alter</td><td id="printAge">30</td></tr><tr><td>Rentenbeginn</td><td id="printRetire">67</td></tr><tr><td>Strategie</td><td style="color:#B8860B;">Chance</td></tr></table></div></div><div class="print-card" style="margin-top:20px;background:#f9fafb;padding:25px;"><div class="print-row" style="margin-bottom:0;"><div style="width:48%;text-align:center;"><div class="print-label">Prognostiziertes Kapital</div><div class="print-big-num" id="printCapital" style="color:#1D1D1F;">0 €</div><div style="font-size:10px;color:#34C759;font-weight:bold;background:#dcfce7;padding:2px 8px;border-radius:4px;display:inline-block;">Nach allen Kosten</div></div><div style="width:48%;text-align:center;border-left:1px solid #e5e7eb;"><div class="print-label">Mögliche Rente</div><div class="print-big-num" id="printPension" style="color:#0071E3;">0 €</div><div style="font-size:10px;color:#86868B;">Lebenslang ab Alter 67</div></div></div></div><div class="print-card" style="display:flex;justify-content:space-between;align-items:center;padding:15px 25px;"><div><div style="font-size:14px;font-weight:bold;">Netto-Aufwand</div><div style="font-size:10px;color:#86868B;">Nach Steuererstattung</div></div><div style="text-align:right;"><div style="font-size:20px;font-weight:bold;color:#1D1D1F;" id="printNetEffort">0 €</div><div style="font-size:10px;color:#34C759;font-weight:bold;">Gesamte Steuerersparnis: <span id="printTaxSave">0 €</span></div></div></div><div style="margin-top:30px;page-break-inside:avoid;"><div class="print-h3">Vermögensentwicklung</div><div style="height:300px;width:100%;display:flex;align-items:flex-end;justify-content:center;border:1px solid #f3f4f6;border-radius:8px;padding:10px;"><img id="printChartImg" style="max-width:100%;max-height:100%;object-fit:contain;"/></div></div><div style="margin-top:auto;padding-top:20px;border-top:1px solid #e5e7eb;font-size:8px;color:#9ca3af;line-height:1.4;"><p><strong>Hinweis:</strong> Diese Berechnung dient ausschließlich Illustrationszwecken. Die tatsächliche Wertentwicklung kann höher oder niedriger ausfallen. Steuerliche Vorteile hängen von den persönlichen Verhältnissen ab und können sich künftig ändern. Kostenannahmen: Alpha (2,5%), Beta (12%), Gamma (0,6%). Stand: 2026.</p></div></div><div id="auth-overlay"><div class="auth-card"><div class="text-center mb-8"><div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-[28px] flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-100/30 border border-white"><span class="material-symbols-rounded text-4xl">lock_open</span></div><h2 class="text-3xl font-bold tracking-tight text-[#1D1D1F] mb-3" id="authTitle">Willkommen</h2><p class="text-[15px] text-[#86868B] leading-relaxed font-medium" id="authSubtitle">Melden Sie sich an, um Zugriff auf den<br>Basisrente-Rechner 2026 zu erhalten.</p></div><form id="authForm" class="space-y-4"><div id="nameField" class="hidden"><div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">person</span><input type="text" id="regName" class="ios-input" placeholder="Vollständiger Name" required></div></div><div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">mail</span><input type="email" id="authEmail" required class="ios-input" placeholder="E-Mail Adresse"></div><div id="phoneField" class="hidden"><div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">smartphone</span><input type="tel" id="regPhone" class="ios-input" placeholder="Mobilnummer" required oninput="this.value=this.value.replace(/[^0-9+]/g,'')"></div></div><div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">key</span><input type="password" id="authPass" required class="ios-input" placeholder="Passwort"></div><div id="consentField" class="hidden pt-2"><div class="flex items-center gap-3"><input type="checkbox" id="regConsent" class="toggle-switch" style="transform:scale(0.6);margin:0;"><label for="regConsent" class="text-[12px] text-[#86868B] leading-tight cursor-pointer select-none flex-1">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="https://richterstefan.com/datenschutz" target="_blank" class="text-[#0071E3] underline hover:text-[#005bb5]">Datenschutzerklärung</a> zu.</label></div></div><div id="forgotPasswordContainer" class="text-right pt-1"><a href="#" id="forgotPasswordBtn" class="text-xs text-[#0071E3] font-semibold hover:underline transition-all">Passwort vergessen?</a></div><div id="errorMsg" class="text-red-500 text-xs text-center font-medium hidden bg-red-50 p-3 rounded-xl border border-red-100"></div><div id="successMsg" class="text-green-600 text-xs text-center font-medium hidden bg-green-50 p-3 rounded-xl border border-green-100"></div><button type="submit" class="auth-btn mt-6" id="authBtnLabel">Einloggen</button></form><div class="text-center mt-8"><button id="toggleAuthMode" class="text-[#0071E3] text-sm font-semibold hover:text-[#005bb5] transition-colors">Noch kein Konto? Jetzt registrieren</button></div><div class="mt-6 text-center border-t border-gray-100 pt-4"><a href="https://richterstefan.com/impressum" target="_blank" class="text-[10px] text-gray-400 font-medium hover:text-gray-600 transition-colors uppercase tracking-wider">Impressum</a></div></div></div><div id="main-app"><header class="sticky top-0 z-[90] bg-[#F5F5F7]/85 backdrop-blur-2xl border-b border-[rgba(0,0,0,0.03)]"><div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center"><div class="flex items-center gap-4"><div><h1 class="text-xl font-bold tracking-widest text-[#1D1D1F] uppercase">BASISRENTE</h1><p class="text-[10px] text-[#86868B] uppercase tracking-wider font-bold mt-0.5">Pro Edition 2026</p></div></div><div class="flex items-center gap-3"><button id="logoutBtn" class="bg-white hover:bg-gray-50 text-[#1D1D1F] border border-gray-200 px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-105"><span class="material-symbols-rounded text-sm">logout</span><span>Abmelden</span></button></div></div></header><main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8"><div class="lg:col-span-4 space-y-6"><div class="ios-card p-6 relative" style="z-index:50;"><div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-blue-50 text-[#0071E3] flex items-center justify-center shadow-sm"><span class="material-symbols-rounded text-xl">person</span></div><h2 class="text-lg font-bold text-[#1D1D1F]">Persönliche Daten</h2></div><div class="space-y-5"><div><div class="segmented-control"><div id="optEmployed" class="segmented-option active" onclick="app_logic.setEmployment('employed')">Angestellt</div><div id="optSelf" class="segmented-option" onclick="app_logic.setEmployment('selfEmployed')">Selbstständig</div></div></div><div><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Zu versteuerndes Einkommen</label><div class="ios-input-group"><input type="number" id="income" value="60000" class="ios-input text-right font-bold text-lg" oninput="app_logic.calculate()"><span class="text-[#86868B] font-medium text-sm ml-2">€</span></div></div><div id="grv-input-container" class="hidden transition-all duration-500 ease-in-out overflow-hidden max-h-0 opacity-0"><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Beitrag Gesetzl. Rente / VW</label><div class="ios-input-group"><input type="number" id="existingGRV" value="0" class="ios-input text-right font-bold text-lg" oninput="app_logic.calculate()"><span class="text-[#86868B] font-medium text-sm ml-2">€</span></div></div><div class="grid grid-cols-2 gap-4"><div><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Status</label><div class="custom-select-container" id="dropdown-marital"><div class="custom-select-trigger"><span class="trigger-text">Ledig</span><span class="material-symbols-rounded text-gray-400">expand_more</span></div><div class="custom-select-options"><div class="custom-option selected" data-value="single">Ledig</div><div class="custom-option" data-value="married">Verheiratet</div></div><input type="hidden" id="maritalStatus" value="single"></div></div><div><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Region</label><div class="custom-select-container" id="dropdown-state"><div class="custom-select-trigger"><span class="trigger-text">BW</span><span class="material-symbols-rounded text-gray-400">expand_more</span></div><div class="custom-select-options"><div class="custom-option selected" data-value="BW">Baden-Würt.</div><div class="custom-option" data-value="BY">Bayern</div><div class="custom-option" data-value="BE">Berlin</div><div class="custom-option" data-value="BB">Brandenburg</div><div class="custom-option" data-value="HB">Bremen</div><div class="custom-option" data-value="HH">Hamburg</div><div class="custom-option" data-value="HE">Hessen</div><div class="custom-option" data-value="MV">MV</div><div class="custom-option" data-value="NI">Niedersachsen</div><div class="custom-option" data-value="NW">NRW</div><div class="custom-option" data-value="RP">RLP</div><div class="custom-option" data-value="SL">Saarland</div><div class="custom-option" data-value="SN">Sachsen</div><div class="custom-option" data-value="ST">S.-Anhalt</div><div class="custom-option" data-value="SH">SH</div><div class="custom-option" data-value="TH">Thüringen</div></div><input type="hidden" id="state" value="BW"></div></div></div><div class="bg-white rounded-2xl p-2 gap-1 flex flex-col border border-gray-100 shadow-sm transition-transform hover:scale-[1.01] duration-300"><div id="grv-toggle-wrapper" class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-xl transition-colors"><span class="text-xs font-bold text-[#1D1D1F] ml-2">Gesetzliche Rente (Pflicht)</span><input type="checkbox" id="paysGRV" class="toggle-switch" checked disabled></div><div class="h-[1px] bg-gray-100 mx-3"></div><div class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-xl transition-colors"><span class="text-xs font-bold text-[#1D1D1F] ml-2">Kirchensteuer</span><input type="checkbox" id="churchTax" class="toggle-switch" checked onchange="app_logic.calculate()"></div></div></div></div><div class="ios-card p-6 relative" style="z-index:40;"><div class="flex items-center gap-3 mb-6"><div class="w-10 h-10 rounded-full bg-green-50 text-[#34C759] flex items-center justify-center shadow-sm"><span class="material-symbols-rounded text-xl">savings</span></div><h2 class="text-lg font-bold text-[#1D1D1F]">Investition</h2></div><div class="space-y-6"><div><div class="flex justify-between items-end mb-3"><label class="text-[11px] font-bold text-[#86868B] uppercase tracking-wider">Monatliche Rate</label><span id="savingsDisplay" class="text-3xl font-bold text-[#1D1D1F] tracking-tight">250 €</span></div><input type="range" id="savings" min="50" max="2500" step="10" value="250" oninput="app_logic.calculate()"></div><div class="grid grid-cols-2 gap-4"><div><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Alter</label><div class="ios-input-group"><input type="number" id="currentAge" value="30" class="ios-input text-center font-bold text-lg" oninput="app_logic.calculate()"></div></div><div><label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Rentenbeginn</label><div class="ios-input-group"><input type="number" id="retirementAge" value="67" class="ios-input text-center font-bold text-lg" oninput="app_logic.calculate()"></div></div></div></div></div><div class="ios-card p-6 bg-gradient-to-br from-white to-[#F9F9F9] relative" style="z-index:30;"><div class="flex justify-between items-center mb-4"><h2 class="text-sm font-bold text-[#1D1D1F]">Anlagestrategie</h2><span class="text-[10px] font-bold bg-[#F2F2F7] px-2 py-1 rounded text-[#86868B]">MIX</span></div><div class="relative mb-6"><div class="flex justify-between text-[10px] font-bold text-[#86868B] uppercase tracking-widest mb-2"><span>Sicherheit</span><span class="text-[#B8860B]">Chance</span></div><input type="range" id="riskSlider" min="0" max="100" value="100" oninput="app_logic.calculate()"></div><div class="flex gap-3 text-center"><div class="flex-1 bg-white p-3 rounded-xl border border-gray-100 shadow-sm"><div class="text-[9px] text-[#86868B] uppercase font-bold mb-1">Garantie</div><div class="font-bold text-lg text-[#1D1D1F]" id="securePercent">0%</div></div><div class="flex-1 bg-white p-3 rounded-xl border border-yellow-100 shadow-sm"><div class="text-[9px] text-[#B8860B] uppercase font-bold mb-1">Fonds/Gold</div><div class="font-bold text-lg text-[#B8860B]" id="riskPercent">100%</div></div></div><div class="text-center mt-4 bg-gray-50 rounded-lg p-2 border border-gray-100"><span class="text-[11px] text-[#86868B] font-medium">Erwartete Rendite: <strong class="text-[#1D1D1F]" id="yieldDisplay">6.50%</strong> p.a.</span></div></div></div><div class="lg:col-span-8 space-y-6"><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="ios-card p-8 flex flex-col justify-between h-56 relative overflow-hidden group bg-white"><div class="relative z-10"><div class="flex items-center gap-2 mb-3"><div class="w-2.5 h-2.5 rounded-full bg-[#34C759] shadow-[0_0_10px_#34C759]"></div><span class="text-xs font-bold text-[#86868B] uppercase tracking-wider">Endkapital (Prognose)</span></div><h3 class="text-5xl font-bold text-[#1D1D1F] tracking-tight" id="totalCapital">0 €</h3></div><div class="relative z-10 mt-auto"><div class="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-100 text-[#1D8F42] rounded-full text-xs font-bold shadow-sm"><span class="material-symbols-rounded text-sm">verified</span><span>Nach allen Kosten</span></div></div><div class="absolute -right-12 -bottom-12 w-64 h-64 bg-gradient-to-br from-green-100/50 to-transparent rounded-full blur-3xl opacity-60 pointer-events-none"></div></div><div class="ios-card p-8 flex flex-col justify-between h-56 bg-[#1D1D1F] text-white relative overflow-hidden shadow-2xl border-0"><div class="relative z-10"><div class="flex items-center gap-2 mb-3"><div class="w-2.5 h-2.5 rounded-full bg-[#FFD60A] shadow-[0_0_10px_#FFD60A]"></div><span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Mögliche Rente</span></div><h3 class="text-5xl font-bold mt-1 tracking-tight text-white" id="monthlyPension">0 €</h3></div><div class="relative z-10 mt-auto border-t border-white/10 pt-4 flex justify-between items-center"><div><span class="block text-[10px] text-gray-400 uppercase font-bold">Startet ab</span><span class="text-sm font-bold" id="pensionStartDisplay">Alter 67</span></div><span class="material-symbols-rounded text-yellow-400 text-3xl">stars</span></div><div class="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div></div></div><div class="ios-card p-8 bg-gradient-to-r from-white to-[#F9F9F9]"><div class="flex flex-col sm:flex-row justify-between items-center gap-8"><div class="flex items-center gap-5"><div class="w-14 h-14 bg-white rounded-2xl shadow-md border border-gray-100 flex items-center justify-center text-[#0071E3]"><span class="material-symbols-rounded text-3xl">account_balance</span></div><div><h4 class="text-xl font-bold text-[#1D1D1F]">Effektiver Aufwand</h4><div class="flex items-center gap-2 mt-1"><span class="text-xs font-semibold text-[#86868B]">Nach Steuererstattung</span></div></div></div><div class="text-right"><div class="text-4xl font-bold text-[#1D1D1F] tracking-tight" id="netMonthlyEffort">0 €</div><div class="inline-block mt-2 bg-green-100 text-[#1D8F42] px-3 py-1 rounded-lg text-xs font-bold">Ersparnis: <span id="monthlyTaxSavings">0 €</span> / Monat</div></div></div><div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-2 gap-4 text-center"><div><div class="text-[10px] text-[#86868B] uppercase font-bold mb-1">Gesamte Steuerersparnis</div><div class="text-lg font-bold text-[#1D1D1F]" id="totalTaxSavings">0 €</div></div><div class="relative border-l border-gray-200"><div class="text-[10px] text-[#86868B] uppercase font-bold mb-1">Förderquote</div><div class="text-lg font-bold text-[#0071E3]" id="subsidyRate">0%</div></div></div></div><div class="ios-card p-8 bg-white"><div class="flex justify-between items-center mb-8"><div><h3 class="text-xl font-bold text-[#1D1D1F]">Vermögensentwicklung</h3><p class="text-xs text-[#86868B] mt-1 font-medium">Dynamische Hochrechnung über die Laufzeit</p></div><div class="flex gap-4"><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#34C759]"></span><span class="text-xs font-bold text-[#1D1D1F]">Kapital</span></div><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gray-300"></span><span class="text-xs font-bold text-[#86868B]">Invest</span></div></div></div><div class="h-[320px] w-full"><canvas id="wealthChart"></canvas></div></div><div class="ios-card overflow-hidden"><details class="group"><summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-gray-50 transition-colors"><div class="flex items-center gap-3"><div class="bg-gray-100 p-2 rounded-xl"><span class="material-symbols-rounded text-[#86868B] text-xl block">analytics</span></div><span class="text-sm font-bold text-[#1D1D1F]">Detaillierte Analyse & Kosten</span></div><span class="bg-[#F2F2F7] rounded-full p-2 transition-transform duration-300 group-open:rotate-180 text-[#1D1D1F]"><span class="material-symbols-rounded text-lg block">expand_more</span></span></summary><div class="px-6 pb-8 bg-[#FAFAFA] border-t border-gray-100"><div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6"><div><h4 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-4 border-b border-gray-200 pb-2">Kostenstruktur</h4><ul class="space-y-3"><li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Alpha (Abschluss)</span><span class="text-gray-500 font-mono">2,50% d. Summe</span></li><li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Beta (Verwaltung)</span><span class="text-gray-500 font-mono">~12,0% Beitrag</span></li><li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Gamma (Fonds)</span><span class="text-gray-500 font-mono">~0,60% p.a.</span></li></ul></div><div><h4 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-4 border-b border-gray-200 pb-2">Optionen</h4><ul class="space-y-3"><li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Rentenfaktor</span><span class="text-gray-500 font-mono">~26,50 €</span></li><li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Abruf (62)</span><span class="font-bold text-[#0071E3] font-mono" id="pension62">--- €</span></li></ul></div></div></div></details></div></div></main><footer class="max-w-7xl mx-auto px-6 py-6 text-center border-t border-gray-200 mt-8"><a href="https://richterstefan.com/impressum" target="_blank" class="text-xs text-gray-500 font-medium hover:underline">Impressum</a></footer></div><script type="module">import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";import{Chart,registerables}from"https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm";const firebaseConfig={apiKey:"AIzaSyDKvJxVpK49BsmjgG6C9deuuZ-1q-Q36fk",authDomain:"basisrente-app.firebaseapp.com",projectId:"basisrente-app",storageBucket:"basisrente-app.firebasestorage.app",messagingSenderId:"28252529082",appId:"1:28252529082:web:0425733a7442b4fa3efd83",measurementId:"G-MRML46L886"};const CONFIG={allowance:12300,bbgWest:102600,maxDeductible:30060,grvRateTotal:0.186,costs:{alpha:0.025,beta:0.12,gamma:0.006},pensionFactor:26.50};const app=initializeApp(firebaseConfig);const auth=getAuth(app);Chart.register(...registerables);Chart.defaults.font.family="'Inter', sans-serif";Chart.defaults.color='#86868B';let wealthChart=null;let isRegisterMode=false;let userName="";let finalCapital=0;let finalPension=0;let netEffort=0;let taxSavings=0;onAuthStateChanged(auth,(user)=>{if(user&&user.emailVerified){document.getElementById('auth-overlay').classList.add('hidden-overlay');document.getElementById('main-app').classList.add('active-app');document.getElementById('logoutBtn').style.display='flex';userName=localStorage.getItem('userName')||"Kunde"}else{document.getElementById('auth-overlay').classList.remove('hidden-overlay');document.getElementById('main-app').classList.remove('active-app');document.getElementById('logoutBtn').style.display='none'}});document.getElementById('toggleAuthMode').addEventListener('click',()=>{isRegisterMode=!isRegisterMode;const title=document.getElementById('authTitle');const btn=document.getElementById('authBtnLabel');const toggle=document.getElementById('toggleAuthMode');const nameField=document.getElementById('nameField');const phoneField=document.getElementById('phoneField');const consentField=document.getElementById('consentField');const forgot=document.getElementById('forgotPasswordContainer');if(isRegisterMode){title.innerText="Konto erstellen";btn.innerText="Jetzt registrieren";toggle.innerText="Bereits registriert? Hier anmelden";nameField.classList.remove('hidden');phoneField.classList.remove('hidden');consentField.classList.remove('hidden');forgot.style.display="none"}else{title.innerText="Willkommen zurück";btn.innerText="Einloggen";toggle.innerText="Noch kein Konto? Jetzt registrieren";nameField.classList.add('hidden');phoneField.classList.add('hidden');consentField.classList.add('hidden');forgot.style.display="block"}});document.getElementById('authForm').addEventListener('submit',async(e)=>{e.preventDefault();const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPass').value;const btn=document.querySelector('.auth-btn');const errorMsg=document.getElementById('errorMsg');const successMsg=document.getElementById('successMsg');errorMsg.classList.add('hidden');successMsg.classList.add('hidden');if(isRegisterMode){const n=document.getElementById('regName').value.trim();const p=document.getElementById('regPhone').value.trim();const eRex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;const pRex=/^[\+]?[(]?[0-9]{1,4}[)]?[-\s\./0-9]*$/;if(!n||!p||!email){errorMsg.innerText="Bitte füllen Sie alle Pflichtfelder aus.";errorMsg.classList.remove('hidden');return}if(!eRex.test(email)){errorMsg.innerText="Bitte benutzen Sie Ihre echte Email-Adresse.";errorMsg.classList.remove('hidden');return}const dCount=(p.match(/\d/g)||[]).length;if(dCount<7){errorMsg.innerText="Bitte benutzen Sie Ihre echte Telefonnummer.";errorMsg.classList.remove('hidden');return}if(!document.getElementById('regConsent').checked){errorMsg.innerText="Bitte akzeptieren Sie die Datenschutzerklärung.";errorMsg.classList.remove('hidden');return}}btn.disabled=true;btn.style.opacity="0.7";try{if(isRegisterMode){const userCred=await createUserWithEmailAndPassword(auth,email,password);const name=document.getElementById('regName').value;const phone=document.getElementById('regPhone').value;localStorage.setItem('userName',name);userName=name;await sendPasswordResetEmail(auth,email).catch(()=>{});await sendEmailVerification(userCred.user);await fetch('https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone,date:new Date().toISOString()})});await signOut(auth);successMsg.innerText="Bestätigungs-Link gesendet! Bitte prüfen Sie Ihre E-Mails und loggen Sie sich danach ein.";successMsg.classList.remove('hidden');if(isRegisterMode){document.getElementById('toggleAuthMode').click()}}else{const userCred=await signInWithEmailAndPassword(auth,email,password);if(!userCred.user.emailVerified){await signOut(auth);errorMsg.innerText="Bitte bestätigen Sie erst Ihre E-Mail-Adresse über den Link.";errorMsg.classList.remove('hidden')}else{}}}catch(error){console.error(error);let msg="Ein Fehler ist aufgetreten.";if(error.code==='auth/wrong-password'||error.code==='auth/invalid-credential')msg="Falsches Passwort oder E-Mail.";if(error.code==='auth/user-not-found')msg="Konto nicht gefunden.";if(error.code==='auth/email-already-in-use')msg="E-Mail bereits vergeben.";errorMsg.innerText=msg;errorMsg.classList.remove('hidden')}finally{btn.disabled=false;btn.style.opacity="1"}});document.getElementById('forgotPasswordBtn').addEventListener('click',async(e)=>{e.preventDefault();const email=document.getElementById('authEmail').value;if(email)sendPasswordResetEmail(auth,email).then(()=>{const sMsg=document.getElementById('successMsg');sMsg.innerText="E-Mail zum Zurücksetzen gesendet.";sMsg.classList.remove('hidden')});else alert("Bitte E-Mail Adresse eingeben.")});document.getElementById('logoutBtn').addEventListener('click',()=>{signOut(auth);const btn=document.querySelector('.auth-btn');btn.innerHTML="Einloggen";btn.disabled=false;btn.style.opacity="1"});const app_logic={calculate:function(){const income=parseFloat(document.getElementById('income').value)||0;const savings=parseFloat(document.getElementById('savings').value);const age=parseFloat(document.getElementById('currentAge').value);const retireAge=parseFloat(document.getElementById('retirementAge').value);const risk=parseFloat(document.getElementById('riskSlider').value)/100;const marital=document.getElementById('maritalStatus').value;const isEmployed=document.getElementById('optEmployed').className.includes('active');const churchTaxOn=document.getElementById('churchTax').checked;const state=document.getElementById('state').value;this._updateSliderBackground('savings',savings,50,2500,'#34C759');this._updateSliderBackground('riskSlider',risk*100,0,100,'#B8860B');const fmt=(n)=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);document.getElementById('savingsDisplay').innerText=fmt(savings);document.getElementById('riskPercent').innerText=Math.round(risk*100)+'%';document.getElementById('securePercent').innerText=Math.round((1-risk)*100)+'%';document.getElementById('pensionStartDisplay').innerText=`Alter ${retireAge}`;const yieldRate=(0.015*(1-risk))+(0.065*risk);document.getElementById('yieldDisplay').innerText=(yieldRate*100).toFixed(2)+'%';let taxBase=income;if(marital==='married')taxBase=income/2;let baseTax=this._calcTax(taxBase);if(marital==='married')baseTax*=2;if(baseTax>18130){baseTax+=(baseTax*0.055)}let maxDeductible=CONFIG.maxDeductible;if(marital==='married')maxDeductible*=2;let existingGRV=0;if(isEmployed){const relevantIncome=Math.min(income,CONFIG.bbgWest);existingGRV=relevantIncome*CONFIG.grvRateTotal}else{existingGRV=parseFloat(document.getElementById('existingGRV').value)||0}const remainingSpace=Math.max(0,maxDeductible-existingGRV);const annualSavings=savings*12;const deductibleAmount=Math.min(annualSavings,remainingSpace);let newTaxBase=income-deductibleAmount;if(marital==='married')newTaxBase=newTaxBase/2;let newTax=this._calcTax(newTaxBase);if(marital==='married')newTax*=2;if(newTax>18130){newTax+=(newTax*0.055)}let taxSavings=baseTax-newTax;if(churchTaxOn){const rate=(state==='BW'||state==='BY')?0.08:0.09;taxSavings+=(taxSavings*rate)}const monthlyTaxSavings=taxSavings/12;const netEffort=savings-monthlyTaxSavings;const subsidy=(taxSavings/annualSavings)*100;document.getElementById('netMonthlyEffort').innerText=fmt(netEffort);document.getElementById('monthlyTaxSavings').innerText=fmt(monthlyTaxSavings);document.getElementById('totalTaxSavings').innerText=fmt(taxSavings*(retireAge-age));document.getElementById('subsidyRate').innerText=subsidy.toFixed(1)+'%';const duration=retireAge-age;const months=duration*12;let capital=0;let paid=0;const totalAlpha=(savings*12*duration)*CONFIG.costs.alpha;const alphaMonthly=totalAlpha/60;const dataCap=[];const dataInv=[];const labels=[];if(duration>0){for(let i=1;i<=months;i++){paid+=savings;let invest=savings;if(i<=60)invest-=alphaMonthly;invest-=(savings*CONFIG.costs.beta);capital+=invest;capital=capital*(1+yieldRate/12);capital-=(capital*CONFIG.costs.gamma/12);if(i%12===0){dataCap.push(capital);dataInv.push(paid);labels.push(age+(i/12))}}}finalCapital=capital;finalPension=(capital/10000)*CONFIG.pensionFactor;document.getElementById('totalCapital').innerText=fmt(finalCapital);document.getElementById('monthlyPension').innerText=fmt(finalPension);document.getElementById('pension62').innerText=fmt(finalPension*0.78);this._updateChart(labels,dataCap,dataInv);this._updatePrint(income,savings,age,retireAge,finalCapital,finalPension,netEffort,taxSavings)},_updateSliderBackground:function(id,val,min,max,color){const el=document.getElementById(id);if(el){const percentage=((val-min)/(max-min))*100;el.style.background=`linear-gradient(to right, ${color} 0%, ${color} ${percentage}%, #E5E5EA ${percentage}%, #E5E5EA 100%) no-repeat center / 100% 4px`}},_calcTax:function(zvE){if(zvE<=CONFIG.allowance)return 0;const y=(zvE-CONFIG.allowance)/10000;let tax=0;if(zvE<=17000){tax=(935*y+1400)*y}else if(zvE<=68400){const z=(zvE-17000)/10000;tax=(185*z+2450)*z+1000}else if(zvE<=277800){tax=0.42*zvE-10600}else{tax=0.45*zvE-18800}return Math.max(0,Math.floor(tax))},_updateChart:function(lbls,cap,inv){const ctx=document.getElementById('wealthChart').getContext('2d');if(wealthChart)wealthChart.destroy();const grad=ctx.createLinearGradient(0,0,0,400);grad.addColorStop(0,'rgba(52, 199, 89, 0.2)');grad.addColorStop(1,'rgba(52, 199, 89, 0)');wealthChart=new Chart(ctx,{type:'line',data:{labels:lbls,datasets:[{label:'Kapital',data:cap,borderColor:'#34C759',backgroundColor:grad,borderWidth:3,fill:true,tension:0.4,pointRadius:0,hoverRadius:6},{label:'Einzahlung',data:inv,borderColor:'#C7C7CC',borderWidth:2,borderDash:[6,6],fill:false,tension:0.4,pointRadius:0,hoverRadius:0}]},options:{responsive:true,maintainAspectRatio:false,animation:{duration:600},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(255,255,255,0.95)',titleColor:'#1D1D1F',bodyColor:'#1D1D1F',borderColor:'rgba(0,0,0,0.05)',borderWidth:1,padding:12,displayColors:true,callbacks:{label:c=>c.dataset.label+': '+new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',minimumFractionDigits:2}).format(c.raw)}}},scales:{x:{display:false},y:{border:{display:false},grid:{color:'#F2F2F7'},ticks:{font:{family:'Inter'},color:'#86868B'},callback:v=>(v/1000)+'k'}}}})},_updatePrint:function(inc,sav,age,ret,cap,pen,net,tax){const fmt=(n)=>new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);document.getElementById('printStatus').innerText=document.getElementById('optEmployed').className.includes('active')?"Angestellt":"Selbstständig";document.getElementById('printIncome').innerText=fmt(inc);document.getElementById('printMarital').innerText=document.querySelector('#dropdown-marital .trigger-text').innerText;document.getElementById('printState').innerText=document.querySelector('#dropdown-state .trigger-text').innerText;document.getElementById('printSavings').innerText=fmt(sav);document.getElementById('printAge').innerText=age;document.getElementById('printRetire').innerText=ret;document.getElementById('printCapital').innerText=fmt(cap);document.getElementById('printPension').innerText=fmt(pen);document.getElementById('printNetEffort').innerText=fmt(net);document.getElementById('printTaxSave').innerText=fmt(tax/12)},setEmployment:function(status){const empBtn=document.getElementById('optEmployed');const selfBtn=document.getElementById('optSelf');const grvInput=document.getElementById('grv-input-container');const grvToggleWrapper=document.getElementById('grv-toggle-wrapper');if(status==='employed'){empBtn.className='segmented-option active';selfBtn.className='segmented-option';grvInput.classList.add('hidden');grvInput.classList.remove('max-h-20','opacity-100','mb-4');grvToggleWrapper.classList.remove('hidden');document.getElementById('paysGRV').checked=true}else{empBtn.className='segmented-option';selfBtn.className='segmented-option active';grvInput.classList.remove('hidden');setTimeout(()=>grvInput.classList.add('max-h-20','opacity-100','mb-4'),10);grvToggleWrapper.classList.add('hidden');document.getElementById('paysGRV').checked=false}this.calculate()}};window.app_logic=app_logic;function initCustomSelect(id){const container=document.getElementById(id);const trigger=container.querySelector('.custom-select-trigger');const hiddenInput=container.querySelector('input[type="hidden"]');const triggerText=container.querySelector('.trigger-text');trigger.addEventListener('click',(e)=>{e.stopPropagation();document.querySelectorAll('.custom-select-container').forEach(c=>{if(c!==container)c.classList.remove('open')});container.classList.toggle('open')});container.querySelectorAll('.custom-option').forEach(opt=>{opt.addEventListener('click',(e)=>{e.stopPropagation();hiddenInput.value=opt.dataset.value;triggerText.innerText=opt.innerText;container.querySelectorAll('.custom-option').forEach(o=>o.classList.remove('selected'));opt.classList.add('selected');container.classList.remove('open');app_logic.calculate()})});document.addEventListener('click',()=>container.classList.remove('open'))}initCustomSelect('dropdown-marital');initCustomSelect('dropdown-state');window.exportPDF=function(){document.getElementById('printDate').innerText=new Date().toLocaleDateString('de-DE');document.getElementById('printName').innerText=userName||"Kunde";document.getElementById('printChartImg').src=wealthChart.toBase64Image();const element=document.getElementById('print-container');element.style.display='block';element.style.position='fixed';element.style.top='0';element.style.left='0';element.style.zIndex='99999';const opt={margin:0,filename:'Vermögensplanung_2026.pdf',image:{type:'jpeg',quality:0.98},html2canvas:{scale:2,useCORS:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}};html2pdf().set(opt).from(element).save().then(()=>{element.style.display='none';element.style.position='fixed';element.style.left='-9999px'})};app_logic.calculate();import{sendEmailVerification}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";</script></body></html>
+<!DOCTYPE html>
+<html lang="de" oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASISRENTE Pro 2026</title>
+    <!-- LOGO EINBINDUNG: Bitte nennen Sie Ihr Bild 'VBLOGO.png' und legen es in den gleichen Ordner -->
+    <link rel="icon" href="VBLOGO.png" type="image/png">
+    <link rel="apple-touch-icon" href="VBLOGO.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0">
+    <style>
+        :root{--ios-bg:#F5F5F7;--ios-card:rgba(255,255,255,0.9);--ios-text:#1D1D1F;--ios-subtext:#86868B;--ios-blue:#0071E3;--ios-green:#34C759;--ios-gold:#B8860B;--shadow-subtle:0 4px 24px rgba(0,0,0,0.04);--shadow-hover:0 12px 40px rgba(0,0,0,0.08);--ease-spring:cubic-bezier(0.34,1.56,0.64,1)}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background-color:var(--ios-bg);color:var(--ios-text);-webkit-font-smoothing:antialiased;overflow-x:hidden;user-select:none}#auth-overlay{position:fixed;inset:0;z-index:9999;background:rgba(245,245,247,0.4);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);display:flex;justify-content:center;align-items:center;padding:20px;transition:opacity 0.8s var(--ease-spring),visibility 0.8s;opacity:1;visibility:visible}#auth-overlay.hidden-overlay{opacity:0;visibility:hidden;pointer-events:none}#main-app{transition:filter 0.8s ease,transform 0.8s var(--ease-spring);filter:blur(15px);transform:scale(0.98);pointer-events:none;height:100vh;overflow:hidden}#main-app.active-app{filter:blur(0);transform:scale(1);pointer-events:auto;height:auto;overflow:visible}.auth-card{background:rgba(255,255,255,0.85);border-radius:32px;padding:40px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.5)}.ios-card{background-color:var(--ios-card);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border-radius:24px;box-shadow:var(--shadow-subtle);border:1px solid rgba(255,255,255,0.6);transition:transform 0.4s var(--ease-spring),box-shadow 0.4s ease,border-color 0.3s}.ios-card:hover{transform:translateY(-4px) scale(1.005);box-shadow:var(--shadow-hover);border-color:rgba(255,255,255,0.9);z-index:10}.ios-input-group{background:rgba(239,239,244,0.7);border-radius:14px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;transition:all 0.3s var(--ease-spring);border:1px solid transparent}.ios-input-group:focus-within{background:#FFFFFF;border-color:var(--ios-blue);box-shadow:0 0 0 4px rgba(0,113,227,0.15);transform:scale(1.01)}.ios-input{background:transparent;border:none;width:100%;font-size:16px;font-weight:500;color:var(--ios-text);outline:none;margin-left:10px}.toggle-switch{appearance:none;width:52px;height:32px;background:#E9E9EA;border-radius:99px;position:relative;cursor:pointer;transition:background 0.3s ease;flex-shrink:0}.toggle-switch::after{content:'';position:absolute;top:2px;left:2px;width:28px;height:28px;background:white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.2);transition:transform 0.3s var(--ease-spring)}.toggle-switch:checked{background:var(--ios-green)}.toggle-switch:checked::after{transform:translateX(20px)}.toggle-switch:disabled{opacity:0.5;cursor:not-allowed}.segmented-control{background:rgba(118,118,128,0.12);border-radius:14px;padding:4px;display:flex}.segmented-option{flex:1;text-align:center;padding:10px;font-size:13px;font-weight:600;border-radius:11px;cursor:pointer;color:var(--ios-text);transition:all 0.4s var(--ease-spring)}.segmented-option.active{background:#FFFFFF;box-shadow:0 4px 12px rgba(0,0,0,0.1);transform:scale(1.02)}.auth-btn{background:linear-gradient(135deg,#0071E3,#0077ED);color:white;width:100%;padding:16px;border-radius:16px;font-weight:600;font-size:16px;border:none;cursor:pointer;transition:all 0.4s var(--ease-spring);box-shadow:0 8px 20px rgba(0,113,227,0.25)}.auth-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 15px 35px rgba(0,113,227,0.35)}.auth-btn:active{transform:scale(0.97)}.auth-btn:disabled{opacity:0.7;cursor:wait;transform:none}.custom-select-container{position:relative;cursor:pointer;z-index:50}.custom-select-trigger{background:rgba(239,239,244,0.7);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:500;transition:all 0.3s}.custom-select-trigger:hover{background:#FFFFFF;transform:scale(1.01)}.custom-select-options{position:absolute;top:120%;left:0;right:0;background:rgba(255,255,255,0.95);backdrop-filter:blur(30px);border-radius:18px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,0.15);border:1px solid rgba(255,255,255,0.5);opacity:0;visibility:hidden;transform:translateY(-15px) scale(0.95);transition:all 0.3s var(--ease-spring);z-index:100;max-height:300px;overflow-y:auto}.custom-select-container.open .custom-select-options{opacity:1;visibility:visible;transform:translateY(0) scale(1)}.custom-option{padding:12px 16px;font-size:14px;border-radius:12px;transition:0.1s;display:flex;justify-content:space-between}.custom-option:hover{background:var(--ios-blue);color:white}.custom-option.selected{background:#F5F5F7;color:var(--ios-blue);font-weight:700}input[type=range]{-webkit-appearance:none;width:100%;height:28px;background:transparent;cursor:pointer;margin:0;padding:0}input[type=range]::-webkit-slider-runnable-track{width:100%;height:4px;border-radius:99px;border:1px solid rgba(0,0,0,0.05)}input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:28px;width:28px;border-radius:50%;background:#FFFFFF;box-shadow:0 4px 8px rgba(0,0,0,0.15);margin-top:-12px;border:0.5px solid rgba(0,0,0,0.04);transition:transform 0.1s}input[type=range]:active::-webkit-slider-thumb{transform:scale(1.1)}#print-container{position:fixed;left:-9999px;top:0;width:210mm;min-height:297mm;background:white;padding:15mm 20mm;color:#1D1D1F;box-sizing:border-box;font-family:'Inter',sans-serif;z-index:-1}.print-row{display:flex;justify-content:space-between;margin-bottom:4mm}.print-col{width:48%}.print-table{width:100%;border-collapse:collapse;font-size:10pt}.print-table td{padding:2mm 0;border-bottom:1px solid #eee}.print-table td:last-child{text-align:right;font-weight:600}.print-card{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:4mm;padding:6mm;margin-bottom:6mm}.print-h1{font-size:24pt;font-weight:700;margin-bottom:2mm;color:#1D1D1F;text-transform:uppercase;letter-spacing:1px}.print-h3{font-size:10pt;font-weight:700;text-transform:uppercase;color:#86868B;margin-bottom:3mm;letter-spacing:0.5px}.print-big-num{font-size:28pt;font-weight:700;color:#1D1D1F;margin:2mm 0}.print-label{font-size:9pt;font-weight:600;text-transform:uppercase;color:#86868B}#logoutBtn,#global-error-box{display:none}</style>
+</head>
+<body class="pb-16 min-h-screen flex flex-col relative selection:bg-blue-100 selection:text-blue-900">
+    <div id="global-error-box">Ein Fehler ist aufgetreten.</div>
+
+    <!-- PRINT CONTAINER -->
+    <div id="print-container">
+        <div class="print-row" style="border-bottom:2px solid #f3f4f6;padding-bottom:20px;align-items:center;">
+            <div>
+                <div class="print-h1">BASISRENTE</div>
+                <div style="font-size:14px;color:#86868B;">Pro Edition 2026 - Generali BRVA25 Data</div>
+            </div>
+            <div style="text-align:right;">
+                <div class="print-label">Kunde</div>
+                <div style="font-size:16px;font-weight:bold;margin-bottom:4px;" id="printName">Max Mustermann</div>
+                <div style="font-size:12px;color:#86868B;" id="printDate">01.01.2026</div>
+            </div>
+        </div>
+
+        <div class="print-row" style="margin-top:30px;">
+            <div class="print-col">
+                <div class="print-h3">Ihre Angaben</div>
+                <table class="print-table">
+                    <tr><td>Status</td><td id="printStatus">Angestellt</td></tr>
+                    <tr><td>Zu versteuerndes Einkommen</td><td id="printIncome">60.000 €</td></tr>
+                    <tr><td>Familienstand</td><td id="printMarital">Ledig</td></tr>
+                    <tr><td>Bundesland</td><td id="printState">BW</td></tr>
+                </table>
+            </div>
+            <div class="print-col">
+                <div class="print-h3">Sparplan</div>
+                <table class="print-table">
+                    <tr><td>Monatliche Rate</td><td id="printSavings">250 €</td></tr>
+                    <tr><td>Aktuelles Alter</td><td id="printAge">30</td></tr>
+                    <tr><td>Rentenbeginn</td><td id="printRetire">67</td></tr>
+                    <tr><td>Strategie</td><td style="color:#B8860B;">Chance</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="print-card" style="margin-top:20px;background:#f9fafb;padding:25px;">
+            <div class="print-row" style="margin-bottom:0;">
+                <div style="width:48%;text-align:center;">
+                    <div class="print-label">Prognostiziertes Kapital</div>
+                    <div class="print-big-num" id="printCapital" style="color:#1D1D1F;">0 €</div>
+                    <div style="font-size:10px;color:#34C759;font-weight:bold;background:#dcfce7;padding:2px 8px;border-radius:4px;display:inline-block;">Nach allen Kosten</div>
+                </div>
+                <div style="width:48%;text-align:center;border-left:1px solid #e5e7eb;">
+                    <div class="print-label">Mögliche Rente</div>
+                    <div class="print-big-num" id="printPension" style="color:#0071E3;">0 €</div>
+                    <div style="font-size:10px;color:#86868B;">Lebenslang ab Alter 67</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="print-card" style="display:flex;justify-content:space-between;align-items:center;padding:15px 25px;">
+            <div>
+                <div style="font-size:14px;font-weight:bold;">Netto-Aufwand</div>
+                <div style="font-size:10px;color:#86868B;">Nach Steuererstattung</div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:20px;font-weight:bold;color:#1D1D1F;" id="printNetEffort">0 €</div>
+                <div style="font-size:10px;color:#34C759;font-weight:bold;">Gesamte Steuerersparnis: <span id="printTaxSave">0 €</span></div>
+            </div>
+        </div>
+
+        <div style="margin-top:30px;page-break-inside:avoid;">
+            <div class="print-h3">Vermögensentwicklung</div>
+            <div style="height:300px;width:100%;display:flex;align-items:flex-end;justify-content:center;border:1px solid #f3f4f6;border-radius:8px;padding:10px;">
+                <img id="printChartImg" style="max-width:100%;max-height:100%;object-fit:contain;"/>
+            </div>
+        </div>
+
+        <div style="margin-top:auto;padding-top:20px;border-top:1px solid #e5e7eb;font-size:8px;color:#9ca3af;line-height:1.4;">
+            <p><strong>Hinweis:</strong> *) Die Leistungen sind nicht garantiert. Sie können höher oder niedriger sein. Die Berechnung basiert auf den Kostenparametern des Tarifs BRVA25 (Stand 2025) und einer angenommenen Wertentwicklung inklusive Überschussbeteiligung. Die Rente wurde mit einem prognostizierten Rentenfaktor kalkuliert (entspricht ca. 32,88 € pro 10.000 € Kapital im 6%-Szenario), der höher liegt als der garantierte Faktor (23,58 €).</p>
+        </div>
+    </div>
+
+    <!-- AUTH OVERLAY -->
+    <div id="auth-overlay">
+        <div class="auth-card">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-blue-100 text-[#0071E3] rounded-[28px] flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-100/30 border border-white">
+                    <span class="material-symbols-rounded text-4xl">lock_open</span>
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight text-[#1D1D1F] mb-3" id="authTitle">Willkommen</h2>
+                <p class="text-[15px] text-[#86868B] leading-relaxed font-medium" id="authSubtitle">Melden Sie sich an, um Zugriff auf den<br>Basisrente-Rechner 2026 zu erhalten.</p>
+            </div>
+            <form id="authForm" class="space-y-4">
+                <div id="nameField" class="hidden">
+                    <!-- IMPORTANT: 'required' attribute removed to prevent form blocking when hidden -->
+                    <div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">person</span><input type="text" id="regName" class="ios-input" placeholder="Vollständiger Name"></div>
+                </div>
+                <div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">mail</span><input type="email" id="authEmail" required class="ios-input" placeholder="E-Mail Adresse"></div>
+                <div id="phoneField" class="hidden">
+                    <!-- IMPORTANT: 'required' attribute removed to prevent form blocking when hidden -->
+                    <div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">smartphone</span><input type="tel" id="regPhone" class="ios-input" placeholder="Mobilnummer" oninput="this.value=this.value.replace(/[^0-9+]/g,'')"></div>
+                </div>
+                <div class="ios-input-group"><span class="material-symbols-rounded text-[#86868B] pl-2">key</span><input type="password" id="authPass" required class="ios-input" placeholder="Passwort"></div>
+                <div id="consentField" class="hidden pt-2">
+                    <div class="flex items-center gap-3"><input type="checkbox" id="regConsent" class="toggle-switch" style="transform:scale(0.6);margin:0;"><label for="regConsent" class="text-[12px] text-[#86868B] leading-tight cursor-pointer select-none flex-1">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="https://richterstefan.com/datenschutz" target="_blank" class="text-[#0071E3] underline hover:text-[#005bb5]">Datenschutzerklärung</a> zu.</label></div>
+                </div>
+                <div id="forgotPasswordContainer" class="text-right pt-1"><a href="#" id="forgotPasswordBtn" class="text-xs text-[#0071E3] font-semibold hover:underline transition-all">Passwort vergessen?</a></div>
+                <div id="errorMsg" class="text-red-500 text-xs text-center font-medium hidden bg-red-50 p-3 rounded-xl border border-red-100"></div>
+                <div id="successMsg" class="text-green-600 text-xs text-center font-medium hidden bg-green-50 p-3 rounded-xl border border-green-100"></div>
+                <button type="submit" class="auth-btn mt-6" id="authBtnLabel">Einloggen</button>
+            </form>
+            <div class="text-center mt-6"><button id="toggleAuthMode" class="text-[#0071E3] text-sm font-semibold hover:text-[#005bb5] transition-colors">Noch kein Konto? Jetzt registrieren</button></div>
+            <div class="mt-6 text-center border-t border-gray-100 pt-4"><a href="https://richterstefan.com/impressum" target="_blank" class="text-[10px] text-gray-400 font-medium hover:text-gray-600 transition-colors uppercase tracking-wider">Impressum</a></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="main-app">
+        <header class="sticky top-0 z-[90] bg-[#F5F5F7]/85 backdrop-blur-2xl border-b border-[rgba(0,0,0,0.03)]">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div>
+                        <h1 class="text-xl font-bold tracking-widest text-[#1D1D1F] uppercase">BASISRENTE</h1>
+                        <p class="text-[10px] text-[#86868B] uppercase tracking-wider font-bold mt-0.5">Pro Edition 2026</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="logoutBtn" class="bg-white hover:bg-gray-50 text-[#1D1D1F] border border-gray-200 px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2 shadow-sm hover:shadow-md hover:scale-105"><span class="material-symbols-rounded text-sm">logout</span><span>Abmelden</span></button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- LEFT COLUMN -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- PERSONAL DATA -->
+                <div class="ios-card p-6 relative" style="z-index:50;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 text-[#0071E3] flex items-center justify-center shadow-sm"><span class="material-symbols-rounded text-xl">person</span></div>
+                        <h2 class="text-lg font-bold text-[#1D1D1F]">Persönliche Daten</h2>
+                    </div>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="segmented-control">
+                                <div id="optEmployed" class="segmented-option" onclick="app_logic.setEmployment('employed')">Angestellt</div>
+                                <div id="optSelf" class="segmented-option active" onclick="app_logic.setEmployment('selfEmployed')">Selbstständig</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Zu versteuerndes Einkommen</label>
+                            <div class="ios-input-group"><input type="number" id="income" value="120000" class="ios-input text-right font-bold text-lg" oninput="app_logic.calculate()"><span class="text-[#86868B] font-medium text-sm ml-2">€</span></div>
+                        </div>
+                        <div id="grv-input-container" class="transition-all duration-500 ease-in-out overflow-hidden max-h-20 opacity-100 mb-4">
+                            <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Beitrag Gesetzl. Rente / VW</label>
+                            <div class="ios-input-group"><input type="number" id="existingGRV" value="0" class="ios-input text-right font-bold text-lg" oninput="app_logic.calculate()"><span class="text-[#86868B] font-medium text-sm ml-2">€</span></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Status</label>
+                                <div class="custom-select-container" id="dropdown-marital">
+                                    <div class="custom-select-trigger"><span class="trigger-text">Ledig</span><span class="material-symbols-rounded text-gray-400">expand_more</span></div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-option selected" data-value="single">Ledig</div>
+                                        <div class="custom-option" data-value="married">Verheiratet</div>
+                                    </div>
+                                    <input type="hidden" id="maritalStatus" value="single">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Region</label>
+                                <div class="custom-select-container" id="dropdown-state">
+                                    <div class="custom-select-trigger"><span class="trigger-text">BW</span><span class="material-symbols-rounded text-gray-400">expand_more</span></div>
+                                    <div class="custom-select-options">
+                                        <div class="custom-option selected" data-value="BW">Baden-Würt.</div>
+                                        <div class="custom-option" data-value="BY">Bayern</div>
+                                        <div class="custom-option" data-value="BE">Berlin</div>
+                                        <div class="custom-option" data-value="BB">Brandenburg</div>
+                                        <div class="custom-option" data-value="HB">Bremen</div>
+                                        <div class="custom-option" data-value="HH">Hamburg</div>
+                                        <div class="custom-option" data-value="HE">Hessen</div>
+                                        <div class="custom-option" data-value="MV">MV</div>
+                                        <div class="custom-option" data-value="NI">Niedersachsen</div>
+                                        <div class="custom-option" data-value="NW">NRW</div>
+                                        <div class="custom-option" data-value="RP">RLP</div>
+                                        <div class="custom-option" data-value="SL">Saarland</div>
+                                        <div class="custom-option" data-value="SN">Sachsen</div>
+                                        <div class="custom-option" data-value="ST">S.-Anhalt</div>
+                                        <div class="custom-option" data-value="SH">SH</div>
+                                        <div class="custom-option" data-value="TH">Thüringen</div>
+                                    </div>
+                                    <input type="hidden" id="state" value="BW">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-2xl p-2 gap-1 flex flex-col border border-gray-100 shadow-sm transition-transform hover:scale-[1.01] duration-300">
+                            <div id="grv-toggle-wrapper" class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-xl transition-colors hidden"><span class="text-xs font-bold text-[#1D1D1F] ml-2">Gesetzliche Rente (Pflicht)</span><input type="checkbox" id="paysGRV" class="toggle-switch" checked disabled></div>
+                            <div class="h-[1px] bg-gray-100 mx-3"></div>
+                            <div class="flex justify-between items-center p-2 hover:bg-gray-50 rounded-xl transition-colors"><span class="text-xs font-bold text-[#1D1D1F] ml-2">Kirchensteuer</span><input type="checkbox" id="churchTax" class="toggle-switch" onchange="app_logic.calculate()"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INVESTMENT -->
+                <div class="ios-card p-6 relative" style="z-index:40;">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-green-50 text-[#34C759] flex items-center justify-center shadow-sm"><span class="material-symbols-rounded text-xl">savings</span></div>
+                        <h2 class="text-lg font-bold text-[#1D1D1F]">Investition</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-end mb-3"><label class="text-[11px] font-bold text-[#86868B] uppercase tracking-wider">Monatliche Rate</label><span id="savingsDisplay" class="text-3xl font-bold text-[#1D1D1F] tracking-tight">100 €</span></div>
+                            <input type="range" id="savings" min="50" max="2500" step="10" value="100" oninput="app_logic.calculate()">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Alter</label>
+                                <div class="ios-input-group"><input type="number" id="currentAge" value="28" class="ios-input text-center font-bold text-lg" oninput="app_logic.calculate()"></div>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-[#86868B] uppercase mb-2 ml-1 tracking-wider">Rentenbeginn</label>
+                                <div class="ios-input-group"><input type="number" id="retirementAge" value="67" class="ios-input text-center font-bold text-lg" oninput="app_logic.calculate()"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STRATEGY -->
+                <div class="ios-card p-6 bg-gradient-to-br from-white to-[#F9F9F9] relative" style="z-index:30;">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-sm font-bold text-[#1D1D1F]">Anlagestrategie & Wertentwicklung</h2>
+                        <span class="text-[10px] font-bold bg-[#F2F2F7] px-2 py-1 rounded text-[#86868B]">PORTFOLIO</span>
+                    </div>
+                    
+                    <!-- Yield Slider -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-end mb-2">
+                            <label class="text-[10px] font-bold text-[#86868B] uppercase tracking-widest">Wertentwicklung (Ø p.a.)</label>
+                            <span id="yieldDisplay" class="text-lg font-bold text-[#1D1D1F]">6.00%</span>
+                        </div>
+                        <input type="range" id="yieldSlider" min="1" max="8" step="0.5" value="6" oninput="app_logic.calculate()">
+                    </div>
+
+                    <div class="h-[1px] bg-gray-200 w-full mb-6"></div>
+
+                    <!-- Allocation Sliders -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-[10px] font-bold text-[#86868B] uppercase tracking-widest mb-1">
+                                <span>Konventionell</span>
+                                <span id="valSafety" class="text-[#1D1D1F]">0%</span>
+                            </div>
+                            <input type="range" id="allocSafety" min="0" max="100" value="0" oninput="app_logic.updateAllocation('allocSafety')" class="h-1">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] font-bold text-[#86868B] uppercase tracking-widest mb-1">
+                                <span class="text-[#0071E3]">Fonds</span>
+                                <span id="valFonds" class="text-[#0071E3]">0%</span>
+                            </div>
+                            <input type="range" id="allocFonds" min="0" max="100" value="0" oninput="app_logic.updateAllocation('allocFonds')" class="h-1">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] font-bold text-[#86868B] uppercase tracking-widest mb-1">
+                                <span class="text-[#B8860B]">Gold</span>
+                                <span id="valGold" class="text-[#B8860B]">100%</span>
+                            </div>
+                            <input type="range" id="allocGold" min="0" max="100" value="100" oninput="app_logic.updateAllocation('allocGold')" class="h-1">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-100 text-center">
+                         <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            <span class="text-[10px] font-bold text-[#86868B]">MIX: <span id="mixDisplay">0% / 0% / 100%</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="lg:col-span-8 space-y-6">
+                <!-- RESULTS GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="ios-card p-8 flex flex-col justify-between h-56 relative overflow-hidden group bg-white">
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#34C759] shadow-[0_0_10px_#34C759]"></div>
+                                <span class="text-xs font-bold text-[#86868B] uppercase tracking-wider">Endkapital (Prognose)</span>
+                            </div>
+                            <h3 class="text-5xl font-bold text-[#1D1D1F] tracking-tight" id="totalCapital">0 €</h3>
+                        </div>
+                        <div class="relative z-10 mt-auto">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-green-50 border border-green-100 text-[#1D8F42] rounded-full text-xs font-bold shadow-sm">
+                                <span class="material-symbols-rounded text-sm">verified</span>
+                                <span>Nach allen Kosten</span>
+                            </div>
+                        </div>
+                        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-gradient-to-br from-green-100/50 to-transparent rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+                    </div>
+
+                    <div class="ios-card p-8 flex flex-col justify-between h-56 bg-[#1D1D1F] text-white relative overflow-hidden shadow-2xl border-0">
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="w-2.5 h-2.5 rounded-full bg-[#FFD60A] shadow-[0_0_10px_#FFD60A]"></div>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Mögliche Rente</span>
+                            </div>
+                            <h3 class="text-5xl font-bold mt-1 tracking-tight text-white" id="monthlyPension">0 €</h3>
+                        </div>
+                        <div class="relative z-10 mt-auto border-t border-white/10 pt-4 flex justify-between items-center">
+                            <div><span class="block text-[10px] text-gray-400 uppercase font-bold">Startet ab</span><span class="text-sm font-bold" id="pensionStartDisplay">Alter 67</span></div>
+                            <span class="material-symbols-rounded text-yellow-400 text-3xl">stars</span>
+                        </div>
+                        <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+                    </div>
+                </div>
+
+                <!-- TAX CARD -->
+                <div class="ios-card p-8 bg-gradient-to-r from-white to-[#F9F9F9]">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
+                        <div class="flex items-center gap-5">
+                            <div class="w-14 h-14 bg-white rounded-2xl shadow-md border border-gray-100 flex items-center justify-center text-[#0071E3]"><span class="material-symbols-rounded text-3xl">account_balance</span></div>
+                            <div>
+                                <h4 class="text-xl font-bold text-[#1D1D1F]">Effektiver Aufwand</h4>
+                                <div class="flex items-center gap-2 mt-1"><span class="text-xs font-semibold text-[#86868B]">Nach Steuererstattung</span></div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-4xl font-bold text-[#1D1D1F] tracking-tight" id="netMonthlyEffort">0 €</div>
+                            <div class="inline-block mt-2 bg-green-100 text-[#1D8F42] px-3 py-1 rounded-lg text-xs font-bold">Ersparnis: <span id="monthlyTaxSavings">0 €</span> / Monat</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200 grid grid-cols-2 gap-4 text-center">
+                        <div>
+                            <div class="text-[10px] text-[#86868B] uppercase font-bold mb-1">Gesamte Steuerersparnis</div>
+                            <div class="text-lg font-bold text-[#1D1D1F]" id="totalTaxSavings">0 €</div>
+                        </div>
+                        <div class="relative border-l border-gray-200">
+                            <div class="text-[10px] text-[#86868B] uppercase font-bold mb-1">Förderquote</div>
+                            <div class="text-lg font-bold text-[#0071E3]" id="subsidyRate">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHART -->
+                <div class="ios-card p-8 bg-white">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-[#1D1D1F]">Vermögensentwicklung</h3>
+                            <p class="text-xs text-[#86868B] mt-1 font-medium">Dynamische Hochrechnung über die Laufzeit</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#34C759]"></span><span class="text-xs font-bold text-[#1D1D1F]">Kapital</span></div>
+                            <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gray-300"></span><span class="text-xs font-bold text-[#86868B]">Invest</span></div>
+                        </div>
+                    </div>
+                    <div class="h-[320px] w-full"><canvas id="wealthChart"></canvas></div>
+                </div>
+
+                <!-- DETAILS -->
+                <div class="ios-card overflow-hidden">
+                    <details class="group">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-gray-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <div class="bg-gray-100 p-2 rounded-xl"><span class="material-symbols-rounded text-[#86868B] text-xl block">analytics</span></div>
+                                <span class="text-sm font-bold text-[#1D1D1F]">Detaillierte Analyse & Kosten</span>
+                            </div>
+                            <span class="bg-[#F2F2F7] rounded-full p-2 transition-transform duration-300 group-open:rotate-180 text-[#1D1D1F]"><span class="material-symbols-rounded text-lg block">expand_more</span></span>
+                        </summary>
+                        <div class="px-6 pb-8 bg-[#FAFAFA] border-t border-gray-100">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+                                <div>
+                                    <h4 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-4 border-b border-gray-200 pb-2">Kostenstruktur (BRVA25)</h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Alpha (Abschluss)</span><span class="text-gray-500 font-mono">2,50% d. Summe (max 35J)</span></li>
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Beta (Verwaltung)</span><span class="text-gray-500 font-mono">4,24% Beitrag</span></li>
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Kappa (Stückkosten)</span><span class="text-gray-500 font-mono">0,00€ mtl.</span></li>
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Gamma (Fonds)</span><span class="text-gray-500 font-mono">1,95% p.a.</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-4 border-b border-gray-200 pb-2">Optionen</h4>
+                                    <ul class="space-y-3">
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Rentenfaktor (6% Sz.)</span><span class="text-gray-500 font-mono">32,88 €</span></li>
+                                        <li class="flex justify-between items-center text-xs p-3 bg-white rounded-xl border border-gray-100 shadow-sm"><span class="text-[#1D1D1F] font-bold">Abruf (62)</span><span class="font-bold text-[#0071E3] font-mono" id="pension62">--- €</span></li>
+                                        <li class="text-[10px] text-gray-400 italic mt-2">Die Werte basieren auf dem Generali BRVA25 Tarif.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="max-w-7xl mx-auto px-6 py-6 text-center border-t border-gray-200 mt-8">
+            <div id="disclaimer" class="text-[10px] text-gray-400 max-w-4xl mx-auto">
+                <p><strong>Hinweis:</strong> *) Die Leistungen sind nicht garantiert. Sie können höher oder niedriger sein. Die Berechnung basiert auf den Kostenparametern des Tarifs BRVA25 (Stand 2025) und einer angenommenen Wertentwicklung inklusive Überschussbeteiligung. Die Rente wurde mit einem prognostizierten Rentenfaktor kalkuliert (entspricht ca. 32,88 € pro 10.000 € Kapital im 6%-Szenario), der höher liegt als der garantierte Faktor (23,58 €).</p>
+            </div>
+            <a href="https://richterstefan.com/impressum" target="_blank" class="text-xs text-gray-500 font-medium hover:underline block mt-4">Impressum</a>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { Chart, registerables } from "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/+esm";
+
+        // MOVED APP LOGIC TO TOP to ensure it's defined before auth callbacks run
+        const CONFIG = {
+            allowance: 12300,
+            bbgWest: 102600,
+            maxDeductible: 30060,
+            grvRateTotal: 0.186,
+            costs: {
+                alphaRate: 0.025,
+                alphaMonths: 60,
+                betaRate: 0.0424,
+                kappaMonthly: 0.00,
+                gammaPa: 0.0170         
+            },
+            pensionFactor: 32.875
+        };
+        
+        const app_logic = {
+            calculate: function() {
+                const income = parseFloat(document.getElementById('income').value) || 0;
+                const savings = parseFloat(document.getElementById('savings').value);
+                const age = parseFloat(document.getElementById('currentAge').value);
+                const retireAge = parseFloat(document.getElementById('retirementAge').value);
+                
+                const allocSafety = parseFloat(document.getElementById('allocSafety').value) / 100;
+                const allocFonds = parseFloat(document.getElementById('allocFonds').value) / 100;
+                const allocGold = parseFloat(document.getElementById('allocGold').value) / 100;
+                const marketYield = parseFloat(document.getElementById('yieldSlider').value) / 100;
+
+                const marital = document.getElementById('maritalStatus').value;
+                const isEmployed = document.getElementById('optEmployed').className.includes('active');
+                const churchTaxOn = document.getElementById('churchTax').checked;
+                const state = document.getElementById('state').value;
+
+                this._updateSliderBackground('savings', savings, 50, 2500, '#34C759');
+                this._updateSliderBackground('yieldSlider', marketYield * 100, 1, 8, '#1D1D1F');
+                this._updateSliderBackground('allocSafety', allocSafety * 100, 0, 100, '#86868B');
+                this._updateSliderBackground('allocFonds', allocFonds * 100, 0, 100, '#0071E3');
+                this._updateSliderBackground('allocGold', allocGold * 100, 0, 100, '#B8860B');
+
+                const fmt = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+                document.getElementById('savingsDisplay').innerText = fmt(savings);
+                document.getElementById('pensionStartDisplay').innerText = `Alter ${retireAge}`;
+                
+                document.getElementById('valSafety').innerText = Math.round(allocSafety * 100) + '%';
+                document.getElementById('valFonds').innerText = Math.round(allocFonds * 100) + '%';
+                document.getElementById('valGold').innerText = Math.round(allocGold * 100) + '%';
+                document.getElementById('yieldDisplay').innerText = (marketYield * 100).toFixed(2) + '%';
+                document.getElementById('mixDisplay').innerText = `${Math.round(allocSafety*100)}% / ${Math.round(allocFonds*100)}% / ${Math.round(allocGold*100)}%`;
+
+                const yieldRate = marketYield;
+
+                let taxBase = income;
+                if (marital === 'married') taxBase = income / 2;
+                let baseTax = this._calcTax(taxBase);
+                if (marital === 'married') baseTax *= 2;
+                if (baseTax > 18130) { baseTax += (baseTax * 0.055); }
+
+                let maxDeductible = CONFIG.maxDeductible;
+                if (marital === 'married') maxDeductible *= 2;
+
+                let existingGRV = 0;
+                if (isEmployed) {
+                    const relevantIncome = Math.min(income, CONFIG.bbgWest);
+                    existingGRV = relevantIncome * CONFIG.grvRateTotal;
+                } else {
+                    existingGRV = parseFloat(document.getElementById('existingGRV').value) || 0;
+                }
+
+                const remainingSpace = Math.max(0, maxDeductible - existingGRV);
+                const annualSavings = savings * 12;
+                const deductibleAmount = Math.min(annualSavings, remainingSpace);
+
+                let newTaxBase = income - deductibleAmount;
+                if (marital === 'married') newTaxBase = newTaxBase / 2;
+                let newTax = this._calcTax(newTaxBase);
+                if (marital === 'married') newTax *= 2;
+                if (newTax > 18130) { newTax += (newTax * 0.055); }
+
+                let taxSavings = baseTax - newTax;
+                if (churchTaxOn) {
+                    const rate = (state === 'BW' || state === 'BY') ? 0.08 : 0.09;
+                    taxSavings += (taxSavings * rate);
+                }
+
+                const monthlyTaxSavings = taxSavings / 12;
+                const netEffort = savings - monthlyTaxSavings;
+                const subsidy = (taxSavings / annualSavings) * 100;
+
+                document.getElementById('netMonthlyEffort').innerText = fmt(netEffort);
+                document.getElementById('monthlyTaxSavings').innerText = fmt(monthlyTaxSavings);
+                document.getElementById('totalTaxSavings').innerText = fmt(taxSavings * (retireAge - age));
+                document.getElementById('subsidyRate').innerText = subsidy.toFixed(1) + '%';
+
+                const durationYears = retireAge - age;
+                const months = durationYears * 12 + 1; 
+                
+                let capital = 0;
+                let paid = 0;
+
+                const alphaBasisYears = Math.min(durationYears, 35); 
+                const totalAlphaCost = (savings * 12 * alphaBasisYears) * CONFIG.costs.alphaRate;
+                const monthlyAlpha = totalAlphaCost / CONFIG.costs.alphaMonths;
+
+                const dataCap = [];
+                const dataInv = [];
+                const labels = [];
+
+                if (months > 0) {
+                    for (let i = 1; i <= months; i++) {
+                        paid += savings;
+                        let currentInvest = savings;
+                        if (i <= CONFIG.costs.alphaMonths) {
+                            currentInvest -= monthlyAlpha;
+                        }
+                        currentInvest -= (savings * CONFIG.costs.betaRate);
+                        currentInvest -= CONFIG.costs.kappaMonthly;
+                        capital += currentInvest;
+                        let interestFactor = Math.pow(1 + yieldRate, 1/12);
+                        capital *= interestFactor;
+                        capital -= (capital * (CONFIG.costs.gammaPa / 12));
+                        if (i % 12 === 0 || i === months) {
+                            dataCap.push(capital);
+                            dataInv.push(paid);
+                            const labelAge = (i === months) ? retireAge : (age + (i / 12));
+                            labels.push(labelAge);
+                        }
+                    }
+                }
+
+                finalCapital = capital;
+                finalPension = (capital / 10000) * CONFIG.pensionFactor;
+
+                document.getElementById('totalCapital').innerText = fmt(finalCapital);
+                document.getElementById('monthlyPension').innerText = fmt(finalPension);
+                document.getElementById('pension62').innerText = fmt(finalPension * 0.78);
+
+                this._updateChart(labels, dataCap, dataInv);
+                this._updatePrint(income, savings, age, retireAge, finalCapital, finalPension, netEffort, taxSavings);
+            },
+
+            updateAllocation: function(changed) {
+                const sSafety = document.getElementById('allocSafety');
+                const sFonds = document.getElementById('allocFonds');
+                const sGold = document.getElementById('allocGold');
+
+                let vSafety = parseInt(sSafety.value);
+                let vFonds = parseInt(sFonds.value);
+                let vGold = parseInt(sGold.value);
+
+                if (changed === 'allocGold') {
+                    const remaining = 100 - vGold;
+                    if (vFonds + vSafety === 0) {
+                        vFonds = remaining; 
+                        vSafety = 0;
+                    } else {
+                        const ratio = vFonds / (vFonds + vSafety);
+                        vFonds = Math.round(remaining * ratio);
+                        vSafety = remaining - vFonds;
+                    }
+                } else if (changed === 'allocFonds') {
+                    const remaining = 100 - vFonds;
+                    if (vGold + vSafety === 0) {
+                        vGold = remaining;
+                        vSafety = 0;
+                    } else {
+                        const ratio = vGold / (vGold + vSafety);
+                        vGold = Math.round(remaining * ratio);
+                        vSafety = remaining - vGold;
+                    }
+                } else if (changed === 'allocSafety') {
+                    const remaining = 100 - vSafety;
+                    if (vGold + vFonds === 0) {
+                        vGold = remaining;
+                        vFonds = 0;
+                    } else {
+                        const ratio = vGold / (vGold + vFonds);
+                        vGold = Math.round(remaining * ratio);
+                        vFonds = remaining - vGold;
+                    }
+                }
+
+                const sum = vSafety + vFonds + vGold;
+                if(sum !== 100) {
+                    if (changed === 'allocGold') vFonds += (100 - sum);
+                    else if (changed === 'allocFonds') vGold += (100 - sum);
+                    else vGold += (100 - sum);
+                }
+
+                sSafety.value = vSafety;
+                sFonds.value = vFonds;
+                sGold.value = vGold;
+
+                this.calculate();
+            },
+
+            _updateSliderBackground: function(id, val, min, max, color) {
+                const el = document.getElementById(id);
+                if (el) {
+                    const percentage = ((val - min) / (max - min)) * 100;
+                    el.style.background = `linear-gradient(to right, ${color} 0%, ${color} ${percentage}%, #E5E5EA ${percentage}%, #E5E5EA 100%) no-repeat center / 100% 4px`;
+                }
+            },
+
+            _calcTax: function(zvE) {
+                if (zvE <= CONFIG.allowance) return 0;
+                const y = (zvE - CONFIG.allowance) / 10000;
+                let tax = 0;
+                if (zvE <= 17000) { tax = (935 * y + 1400) * y; }
+                else if (zvE <= 68400) { const z = (zvE - 17000) / 10000; tax = (185 * z + 2450) * z + 1000; }
+                else if (zvE <= 277800) { tax = 0.42 * zvE - 10600; }
+                else { tax = 0.45 * zvE - 18800; }
+                return Math.max(0, Math.floor(tax));
+            },
+
+            _updateChart: function(lbls, cap, inv) {
+                const ctx = document.getElementById('wealthChart').getContext('2d');
+                if (wealthChart) wealthChart.destroy();
+                const grad = ctx.createLinearGradient(0, 0, 0, 400);
+                grad.addColorStop(0, 'rgba(52, 199, 89, 0.2)');
+                grad.addColorStop(1, 'rgba(52, 199, 89, 0)');
+
+                wealthChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: lbls,
+                        datasets: [
+                            { label: 'Kapital', data: cap, borderColor: '#34C759', backgroundColor: grad, borderWidth: 3, fill: true, tension: 0.4, pointRadius: 0, hoverRadius: 6 },
+                            { label: 'Einzahlung', data: inv, borderColor: '#C7C7CC', borderWidth: 2, borderDash: [6, 6], fill: false, tension: 0.4, pointRadius: 0, hoverRadius: 0 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        animation: { duration: 600 },
+                        interaction: { mode: 'index', intersect: false },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                backgroundColor: 'rgba(255,255,255,0.95)',
+                                titleColor: '#1D1D1F',
+                                bodyColor: '#1D1D1F',
+                                borderColor: 'rgba(0,0,0,0.05)',
+                                borderWidth: 1,
+                                padding: 12,
+                                displayColors: true,
+                                callbacks: { label: c => c.dataset.label + ': ' + new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(c.raw) }
+                            }
+                        },
+                        scales: {
+                            x: { 
+                                display: true, 
+                                ticks: { 
+                                    font: { family: 'Inter', size: 10 }, 
+                                    color: '#86868B',
+                                    maxTicksLimit: 8,
+                                    callback: function(val, index) {
+                                        const value = this.getLabelForValue(val);
+                                        return typeof value === 'number' ? Math.floor(value) : value;
+                                    }
+                                },
+                                grid: { display: false }
+                            },
+                            y: { border: { display: false }, grid: { color: '#F2F2F7' }, ticks: { font: { family: 'Inter' }, color: '#86868B' }, callback: v => (v / 1000) + 'k' }
+                        }
+                    }
+                });
+            },
+
+            _updatePrint: function(inc, sav, age, ret, cap, pen, net, tax) {
+                const fmt = (n) => new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+                document.getElementById('printStatus').innerText = document.getElementById('optEmployed').className.includes('active') ? "Angestellt" : "Selbstständig";
+                document.getElementById('printIncome').innerText = fmt(inc);
+                document.getElementById('printMarital').innerText = document.querySelector('#dropdown-marital .trigger-text').innerText;
+                document.getElementById('printState').innerText = document.querySelector('#dropdown-state .trigger-text').innerText;
+                document.getElementById('printSavings').innerText = fmt(sav);
+                document.getElementById('printAge').innerText = age;
+                document.getElementById('printRetire').innerText = ret;
+                document.getElementById('printCapital').innerText = fmt(cap);
+                document.getElementById('printPension').innerText = fmt(pen);
+                document.getElementById('printNetEffort').innerText = fmt(net);
+                document.getElementById('printTaxSave').innerText = fmt(tax / 12);
+            },
+
+            setEmployment: function(status) {
+                const empBtn = document.getElementById('optEmployed');
+                const selfBtn = document.getElementById('optSelf');
+                const grvInput = document.getElementById('grv-input-container');
+                const grvToggleWrapper = document.getElementById('grv-toggle-wrapper');
+
+                if (status === 'employed') {
+                    empBtn.className = 'segmented-option active';
+                    selfBtn.className = 'segmented-option';
+                    grvInput.classList.add('hidden');
+                    grvInput.classList.remove('max-h-20', 'opacity-100', 'mb-4');
+                    grvToggleWrapper.classList.remove('hidden');
+                    document.getElementById('paysGRV').checked = true;
+                } else {
+                    empBtn.className = 'segmented-option';
+                    selfBtn.className = 'segmented-option active';
+                    grvInput.classList.remove('hidden');
+                    setTimeout(() => grvInput.classList.add('max-h-20', 'opacity-100', 'mb-4'), 10);
+                    grvToggleWrapper.classList.add('hidden');
+                    document.getElementById('paysGRV').checked = false;
+                }
+                this.calculate();
+            }
+        };
+
+        window.app_logic = app_logic; // Expose globally immediately
+
+        const firebaseConfig={apiKey:"AIzaSyDKvJxVpK49BsmjgG6C9deuuZ-1q-Q36fk",authDomain:"basisrente-app.firebaseapp.com",projectId:"basisrente-app",storageBucket:"basisrente-app.firebasestorage.app",messagingSenderId:"28252529082",appId:"1:28252529082:web:0425733a7442b4fa3efd83",measurementId:"G-MRML46L886"};
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        Chart.register(...registerables);
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#86868B';
+
+        let wealthChart = null;
+        let isRegisterMode = false;
+        let userName = "";
+        let finalCapital = 0;
+        let finalPension = 0;
+        let netEffort = 0;
+        let taxSavings = 0;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user && user.emailVerified) {
+                document.getElementById('auth-overlay').classList.add('hidden-overlay');
+                document.getElementById('main-app').classList.add('active-app');
+                document.getElementById('logoutBtn').style.display = 'flex';
+                userName = localStorage.getItem('userName') || "Kunde";
+                if(typeof app_logic !== 'undefined') app_logic.calculate();
+            } else {
+                document.getElementById('auth-overlay').classList.remove('hidden-overlay');
+                document.getElementById('main-app').classList.remove('active-app');
+                document.getElementById('logoutBtn').style.display = 'none';
+            }
+        });
+
+        document.getElementById('toggleAuthMode').addEventListener('click', () => {
+            isRegisterMode = !isRegisterMode;
+            const title = document.getElementById('authTitle');
+            const btn = document.getElementById('authBtnLabel');
+            const toggle = document.getElementById('toggleAuthMode');
+            const nameField = document.getElementById('nameField');
+            const phoneField = document.getElementById('phoneField');
+            const consentField = document.getElementById('consentField');
+            const forgot = document.getElementById('forgotPasswordContainer');
+
+            if (isRegisterMode) {
+                title.innerText = "Konto erstellen";
+                btn.innerText = "Jetzt registrieren";
+                toggle.innerText = "Bereits registriert? Hier anmelden";
+                nameField.classList.remove('hidden');
+                phoneField.classList.remove('hidden');
+                consentField.classList.remove('hidden');
+                forgot.style.display = "none";
+            } else {
+                title.innerText = "Willkommen zurück";
+                btn.innerText = "Einloggen";
+                toggle.innerText = "Noch kein Konto? Jetzt registrieren";
+                nameField.classList.add('hidden');
+                phoneField.classList.add('hidden');
+                consentField.classList.add('hidden');
+                forgot.style.display = "block";
+            }
+        });
+
+        document.getElementById('authForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value.trim();
+            const password = document.getElementById('authPass').value;
+            const btn = document.querySelector('.auth-btn');
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+
+            if (isRegisterMode) {
+                const n = document.getElementById('regName').value.trim();
+                const p = document.getElementById('regPhone').value.trim();
+                const eRex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!n || !p || !email) { errorMsg.innerText = "Bitte füllen Sie alle Pflichtfelder aus."; errorMsg.classList.remove('hidden'); return; }
+                if (!eRex.test(email)) { errorMsg.innerText = "Bitte benutzen Sie Ihre echte Email-Adresse."; errorMsg.classList.remove('hidden'); return; }
+                const dCount = (p.match(/\d/g) || []).length;
+                if (dCount < 7) { errorMsg.innerText = "Bitte benutzen Sie Ihre echte Telefonnummer."; errorMsg.classList.remove('hidden'); return; }
+                if (!document.getElementById('regConsent').checked) { errorMsg.innerText = "Bitte akzeptieren Sie die Datenschutzerklärung."; errorMsg.classList.remove('hidden'); return; }
+            }
+
+            btn.disabled = true;
+            btn.style.opacity = "0.7";
+
+            try {
+                if (isRegisterMode) {
+                    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+                    const name = document.getElementById('regName').value;
+                    const phone = document.getElementById('regPhone').value;
+                    localStorage.setItem('userName', name);
+                    userName = name;
+                    
+                    await sendPasswordResetEmail(auth, email).catch(() => {});
+                    await sendEmailVerification(userCred.user);
+                    
+                    await fetch('https://hook.eu1.make.com/1v5ibarysflq76rm6riy64knvok9dgd5', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name, email, phone, date: new Date().toISOString() })
+                    });
+                    
+                    await signOut(auth);
+                    successMsg.innerText = "Bestätigungs-Link gesendet! Bitte prüfen Sie Ihre E-Mails und loggen Sie sich danach ein.";
+                    successMsg.classList.remove('hidden');
+                    if(isRegisterMode) document.getElementById('toggleAuthMode').click();
+                } else {
+                    const userCred = await signInWithEmailAndPassword(auth, email, password);
+                    if (!userCred.user.emailVerified) {
+                        await signOut(auth);
+                        errorMsg.innerText = "Bitte bestätigen Sie erst Ihre E-Mail-Adresse über den Link.";
+                        errorMsg.classList.remove('hidden');
+                    } else {
+                        document.getElementById('authPass').value = "";
+                    }
+                }
+            } catch (error) {
+                console.error("Auth Error:", error);
+                let msg = "Ein Fehler ist aufgetreten.";
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential' || error.code === 'auth/invalid-login-credentials') {
+                    msg = "E-Mail oder Passwort falsch.";
+                } else if (error.code === 'auth/email-already-in-use') {
+                    msg = "E-Mail bereits vergeben.";
+                } else if (error.code === 'auth/too-many-requests') {
+                    msg = "Zu viele Versuche. Bitte warten Sie kurz.";
+                }
+                errorMsg.innerText = msg;
+                errorMsg.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btn.style.opacity = "1";
+            }
+        });
+
+        document.getElementById('forgotPasswordBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('authEmail').value;
+            const successMsg = document.getElementById('successMsg');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            successMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+
+            if (email) {
+                sendPasswordResetEmail(auth, email).then(() => {
+                    successMsg.innerText = "E-Mail zum Zurücksetzen gesendet.";
+                    successMsg.classList.remove('hidden');
+                }).catch(err => {
+                    errorMsg.innerText = "Fehler beim Senden der E-Mail. Prüfen Sie die Adresse.";
+                    errorMsg.classList.remove('hidden');
+                });
+            } else {
+                errorMsg.innerText = "Bitte E-Mail Adresse eingeben.";
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth);
+            const btn = document.querySelector('.auth-btn');
+            btn.innerHTML = "Einloggen";
+            btn.disabled = false;
+            btn.style.opacity = "1";
+            if (isRegisterMode) document.getElementById('toggleAuthMode').click();
+        });
+
+        function initCustomSelect(id) {
+            const container = document.getElementById(id);
+            const trigger = container.querySelector('.custom-select-trigger');
+            const hiddenInput = container.querySelector('input[type="hidden"]');
+            const triggerText = container.querySelector('.trigger-text');
+
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.custom-select-container').forEach(c => { if (c !== container) c.classList.remove('open'); });
+                container.classList.toggle('open');
+            });
+
+            container.querySelectorAll('.custom-option').forEach(opt => {
+                opt.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    hiddenInput.value = opt.dataset.value;
+                    triggerText.innerText = opt.innerText;
+                    container.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    container.classList.remove('open');
+                    app_logic.calculate();
+                });
+            });
+            document.addEventListener('click', () => container.classList.remove('open'));
+        }
+
+        initCustomSelect('dropdown-marital');
+        initCustomSelect('dropdown-state');
+
+        window.exportPDF = function() {
+            document.getElementById('printDate').innerText = new Date().toLocaleDateString('de-DE');
+            document.getElementById('printName').innerText = userName || "Kunde";
+            document.getElementById('printChartImg').src = wealthChart.toBase64Image();
+            
+            const element = document.getElementById('print-container');
+            element.style.display = 'block';
+            element.style.position = 'fixed';
+            element.style.top = '0';
+            element.style.left = '0';
+            element.style.zIndex = '99999';
+
+            const opt = { margin: 0, filename: 'Vermögensplanung_2026.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = 'none';
+                element.style.left = '-9999px';
+            });
+        };
+
+        if(typeof app_logic !== 'undefined') app_logic.calculate();
+    </script>
+</body>
+</html>
